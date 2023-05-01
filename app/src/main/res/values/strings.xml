@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Slagalica</string>
+    <string name="zapocni_igru">Započni igru</string>
+    <string name="logout">Logout</string>
+    <string name="lista_prijatelja">Lista prijatelja</string>
+    <string name="dodaj_prijatelja">Dodaj</string>
+    <string name="ne_znam">Ne znam</string>
 </resources>

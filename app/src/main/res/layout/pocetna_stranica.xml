@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/aa"
+    android:theme="@style/Theme.Slagalica">
+
+    <EditText
+        android:id="@+id/brojZvezdaText"
+        android:layout_width="63dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="152dp"
+        android:ems="10"
+        android:text="0/100"
+        app:layout_constraintBottom_toTopOf="@+id/brojTokenaText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/zvezda"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.036"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/brojTokenaText"
+        android:layout_width="28dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="48dp"
+        android:text="0"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/zapocniIgruButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/token"
+        app:layout_constraintTop_toBottomOf="@+id/brojZvezdaText"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/token"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginBottom="39dp"
+        app:layout_constraintBottom_toTopOf="@+id/zapocniIgruButton"
+        app:layout_constraintEnd_toStartOf="@+id/brojTokenaText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/tokens"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/zvezda"
+        android:layout_width="56dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="45dp"
+        app:layout_constraintBottom_toTopOf="@+id/token"
+        app:layout_constraintEnd_toStartOf="@+id/brojZvezdaText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/zapocniIgruButton"
+        android:layout_width="175dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="299dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/zapocni_igru"
+        app:layout_constraintBottom_toTopOf="@+id/listaPrijateljaText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/token"
+        tools:ignore="MissingConstraints" />
+
+    <HorizontalScrollView
+        android:id="@+id/listaPrijateljaScroll"
+        android:layout_width="410dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="61dp"
+        android:background="#557AC5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/listaPrijateljaText"
+        android:layout_width="211dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/lista_prijatelja"
+        app:layout_constraintBottom_toTopOf="@+id/listaPrijateljaScroll"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/dodajPrijateljaButton"
+        android:layout_width="89dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/dodaj_prijatelja"
+        app:layout_constraintBottom_toTopOf="@+id/listaPrijateljaScroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pngwing_com__5_" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pngwing_com__6_" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
