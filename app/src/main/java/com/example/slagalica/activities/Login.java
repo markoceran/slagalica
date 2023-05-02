@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.slagalica.MainActivity;
 import com.example.slagalica.R;
 
 public class Login extends AppCompatActivity {
@@ -19,6 +21,14 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Login.this,RegisterActivity.class));
+            }
+        });
+
+        TextView btnLogin=findViewById(R.id.btnlogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, MainActivity.class));
             }
         });
     }
