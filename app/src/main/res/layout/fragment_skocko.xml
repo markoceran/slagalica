@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/skockoPage"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/skockoPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,10 +13,7 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:orientation="horizontal"
-        android:paddingLeft="8dp"
-        android:paddingTop="2dp"
-        android:paddingRight="8dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/blue_player"
@@ -56,9 +53,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
@@ -73,12 +68,11 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:padding="2dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginBottom="4dp"
+        android:layout_marginTop="30dp"
         >
 
 
@@ -158,11 +152,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:padding="2dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginBottom="4dp">
         <Button
             android:id="@+id/column2row1"
@@ -237,18 +229,12 @@
             android:layout_marginRight="3dp"
             />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:padding="2dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="4dp"
-            >
+            android:layout_marginBottom="4dp">
 
 
             <Button
@@ -325,19 +311,12 @@
                 />
 
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:padding="2dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="4dp"
-            >
+            android:layout_marginBottom="4dp">
 
 
             <Button
@@ -414,17 +393,11 @@
                 />
 
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:padding="2dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginBottom="4dp"
             >
 
@@ -503,19 +476,13 @@
                 />
 
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:padding="2dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="4dp"
-            >
+            android:layout_marginBottom="4dp">
 
 
             <Button
@@ -592,22 +559,13 @@
                 />
 
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:orientation="horizontal"></LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:padding="2dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginBottom="4dp"
+            android:layout_marginTop="30dp"
             >
 
 
@@ -652,18 +610,12 @@
                 android:layout_marginRight="8dp"
                 />
 
-        </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:padding="2dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginBottom="4dp"
             >
 
@@ -710,22 +662,14 @@
                 />
 
         </LinearLayout>
-    </LinearLayout>
+
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:orientation="horizontal"></LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"><LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:padding="2dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
         android:layout_marginBottom="4dp"
-        >
+        android:layout_marginTop="40dp">
 
 
         <Button
@@ -802,7 +746,7 @@
             android:drawablePadding="40dp"
             />
 
-    </LinearLayout></LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
