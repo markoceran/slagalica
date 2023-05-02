@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +36,16 @@ public class KoZnaZnaFragment extends Fragment {
         TextView textView = view.findViewById(R.id.relativeTitle);
         textView.setText(R.string.relativelayout);
         */
+
+        TextView btnDalje = view.findViewById(R.id.dalje);
+        btnDalje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SpojniceFragment spojniceFragment = SpojniceFragment.newInstance("test");
+                getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,spojniceFragment).commit();
+            }
+        });
+
         return view;
     }
 }

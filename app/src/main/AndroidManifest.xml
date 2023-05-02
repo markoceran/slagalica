@@ -12,9 +12,6 @@
         android:theme="@style/Theme.Slagalica"
         tools:targetApi="31">
         <activity
-            android:name=".MojBrojActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.Login"
             android:exported="false" />
         <activity

@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.slagalica.MainActivity;
 import com.example.slagalica.R;
+import com.example.slagalica.activities.Login;
 import com.example.slagalica.tools.FragmentTransition;
 
 public class PocetnaStranicaFragment extends Fragment {
@@ -44,7 +45,19 @@ public class PocetnaStranicaFragment extends Fragment {
         TextView textView = view.findViewById(R.id.relativeTitle);
         textView.setText(R.string.relativelayout);
         */
+
+        TextView btnZapocniIgru = view.findViewById(R.id.zapocniIgruButton);
+        btnZapocniIgru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KoZnaZnaFragment koZnaZnaFragment = KoZnaZnaFragment.newInstance("test");
+                getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,koZnaZnaFragment).commit();
+            }
+        });
+
         return view;
+
+
 
     }
 
