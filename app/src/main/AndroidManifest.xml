@@ -11,15 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Slagalica"
         tools:targetApi="31">
-        <activity
-            android:name=".KorakPoKorakActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SkockoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MojBrojActivity"
-            android:exported="false" />
+
         <activity
             android:name=".activities.Login"
             android:exported="false" />

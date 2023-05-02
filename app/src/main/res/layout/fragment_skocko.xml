@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/bgc"
     android:theme="@style/Theme.Slagalica"
-    tools:context=".activities.SkockoActivity">
+    tools:context=".fragments.SkockoFragment">
 
     <LinearLayout
         android:id="@+id/header"
@@ -61,7 +61,7 @@
         >
 
         <TextView
-            android:layout_width="390dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/input_bg"
             android:text="PRONAĐI TAČNU KOMBINACIJU"
@@ -655,9 +655,9 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"

@@ -37,7 +37,7 @@ public class KoZnaZnaFragment extends Fragment {
         textView.setText(R.string.relativelayout);
         */
 
-        TextView btnDalje = view.findViewById(R.id.dalje);
+        TextView btnDalje = view.findViewById(R.id.red_player);
         btnDalje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

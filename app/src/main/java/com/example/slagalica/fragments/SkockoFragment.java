@@ -1,31 +1,37 @@
 package com.example.slagalica.fragments;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.example.slagalica.R;
 
-public class AsocijacijeFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link SkockoFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class SkockoFragment extends Fragment {
 
-    public static AsocijacijeFragment newInstance(String someParam){
+    public static SkockoFragment newInstance(String someParam){
         Bundle args = new Bundle();
         args.putString("key","test");
 
-        AsocijacijeFragment fragment = new AsocijacijeFragment();
+        SkockoFragment fragment = new SkockoFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.asocijacije, container, false);
+        View view = inflater.inflate(R.layout.fragment_skocko, container, false);
 
         Bundle bundle = getArguments();
         /*if (bundle != null){
@@ -36,13 +42,12 @@ public class AsocijacijeFragment extends Fragment {
         TextView textView = view.findViewById(R.id.relativeTitle);
         textView.setText(R.string.relativelayout);
         */
-
         TextView btnDalje = view.findViewById(R.id.red_player);
         btnDalje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SkockoFragment skockoFragment = SkockoFragment.newInstance("test");
-                getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,skockoFragment).commit();
+                KorakPoKorakFragment korakPoKorakFragment = KorakPoKorakFragment.newInstance("test");
+                getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,korakPoKorakFragment).commit();
             }
         });
 
@@ -53,4 +58,6 @@ public class AsocijacijeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
+
 }

@@ -1,31 +1,32 @@
 package com.example.slagalica.fragments;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.example.slagalica.R;
 
-public class AsocijacijeFragment extends Fragment {
+public class KorakPoKorakFragment extends Fragment {
 
-    public static AsocijacijeFragment newInstance(String someParam){
+    public static KorakPoKorakFragment newInstance(String someParam){
         Bundle args = new Bundle();
         args.putString("key","test");
 
-        AsocijacijeFragment fragment = new AsocijacijeFragment();
+        KorakPoKorakFragment fragment = new KorakPoKorakFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.asocijacije, container, false);
+        View view = inflater.inflate(R.layout.fragment_korak_po_korak, container, false);
 
         Bundle bundle = getArguments();
         /*if (bundle != null){
@@ -41,13 +42,14 @@ public class AsocijacijeFragment extends Fragment {
         btnDalje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SkockoFragment skockoFragment = SkockoFragment.newInstance("test");
-                getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,skockoFragment).commit();
+                MojBrojFragment mojBrojFragment = MojBrojFragment.newInstance("test");
+                getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,mojBrojFragment).commit();
             }
         });
 
         return view;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
