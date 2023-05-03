@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,15 @@ public class PocetnaStranicaFragment extends Fragment {
             public void onClick(View v) {
                 KoZnaZnaFragment koZnaZnaFragment = KoZnaZnaFragment.newInstance("test");
                 getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,koZnaZnaFragment).commit();
+            }
+        });
+
+        ImageView btnProfil = view.findViewById(R.id.profil);
+        btnProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProfilFragment profilFragment = ProfilFragment.newInstance("test");
+                getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,profilFragment).commit();
             }
         });
 

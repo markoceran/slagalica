@@ -13,6 +13,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="152dp"
+        android:background="#805996D6"
         android:ems="10"
         android:text="0/100"
         app:layout_constraintBottom_toTopOf="@+id/brojTokenaText"
@@ -29,6 +30,7 @@
         android:layout_marginTop="53dp"
         android:layout_marginEnd="168dp"
         android:layout_marginBottom="48dp"
+        android:background="#268E8D8D"
         android:text="0"
         android:textAlignment="textStart"
         app:layout_constraintBottom_toTopOf="@+id/zapocniIgruButton"
@@ -43,6 +45,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="165dp"
         android:layout_marginBottom="39dp"
+        android:background="#268E8D8D"
         app:layout_constraintBottom_toTopOf="@+id/zapocniIgruButton"
         app:layout_constraintEnd_toStartOf="@+id/brojTokenaText"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +59,7 @@
         android:layout_marginStart="146dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="45dp"
+        android:background="#805489C1"
         app:layout_constraintBottom_toTopOf="@+id/token"
         app:layout_constraintEnd_toStartOf="@+id/brojZvezdaText"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +119,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/profil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -125,7 +129,7 @@
         app:srcCompat="@drawable/pngwing_com__5_" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/rangLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
