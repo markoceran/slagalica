@@ -75,15 +75,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:layout_marginLeft="120dp">
 
-        <TextView
-            android:layout_width="131dp"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/button_wanted_number"
-            android:layout_width="131dp"
+            android:layout_width="111dp"
             android:layout_height="50dp"
             android:background="@drawable/btn_bg"
             android:text="233"
@@ -100,21 +98,19 @@
 
         <Button
             android:id="@+id/button_blue_number"
-            android:layout_width="131dp"
+            android:layout_width="111dp"
             android:layout_height="50dp"
             android:background="@drawable/btn_2"
             android:text="@string/question_mark"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginRight="120dp"/>
 
-        <TextView
-            android:layout_width="130dp"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/button_red_number"
-            android:layout_width="131dp"
+            android:layout_width="111dp"
             android:layout_height="50dp"
             android:background="@drawable/btn_red"
             android:text="@string/question_mark"
@@ -127,21 +123,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="53dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:paddingLeft="8dp"
-        android:paddingTop="4dp"
+        android:paddingTop="0dp"
         android:paddingRight="8dp">
 
-        <EditText
-            android:id="@+id/textInputResult"
+        <Button
+            android:id="@+id/textInput"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="48dp"
             android:background="@drawable/btn_bg"
             android:drawableRight="@drawable/backspace"
             android:padding="0dp"
-            android:text="  0"
-            android:textSize="50dp"
-            android:textColor="@color/colorWhite"
+            android:text="20x9+50+4-1"
+            android:textSize="24dp"
+            android:textColor="@color/colorBlack"
             android:textColorHint="@color/colorBlack" />
 
     </LinearLayout>
@@ -151,15 +147,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:layout_marginLeft="131dp">
 
-        <TextView
-            android:layout_width="141dp"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/button_potvrdi"
-            android:layout_width="131dp"
+            android:layout_width="121dp"
             android:layout_height="48dp"
             android:background="@drawable/btn_yellow"
             android:text="POTVRDI"
@@ -173,7 +167,7 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:orientation="horizontal"
-        android:paddingLeft="50dp"
+        android:paddingLeft="30dp"
         android:paddingTop="10dp">
 
         <Button
@@ -183,11 +177,10 @@
             android:background="@drawable/btn_bg2"
             android:text="4"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginRight="20dp"/>
 
-        <TextView
-            android:layout_width="20dp"
-            android:layout_height="wrap_content" />
+
 
         <Button
             android:id="@+id/button_number2"
@@ -196,11 +189,10 @@
             android:background="@drawable/btn_bg2"
             android:text="1"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginRight="20dp"/>
 
-        <TextView
-            android:layout_width="20dp"
-            android:layout_height="wrap_content" />
+
 
         <Button
             android:id="@+id/button_number3"
@@ -209,11 +201,10 @@
             android:background="@drawable/btn_bg2"
             android:text="9"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginRight="20dp"/>
 
-        <TextView
-            android:layout_width="20dp"
-            android:layout_height="wrap_content" />
+
 
         <Button
             android:id="@+id/button_number4"
@@ -231,25 +222,24 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:orientation="horizontal"
-        android:paddingLeft="30dp"
+        android:paddingLeft="20dp"
         android:paddingTop="10dp">
 
         <Button
             android:id="@+id/button_number5"
-            android:layout_width="131dp"
+            android:layout_width="121dp"
             android:layout_height="50dp"
             android:background="@drawable/btn_bg2"
             android:text="20"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginRight="80dp"/>
 
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
+
 
         <Button
             android:id="@+id/button_number6"
-            android:layout_width="131dp"
+            android:layout_width="121dp"
             android:layout_height="50dp"
             android:background="@drawable/btn_bg2"
             android:text="50"
@@ -261,78 +251,68 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:orientation="horizontal"
-        android:paddingLeft="10dp"
+        android:paddingLeft="5dp"
         android:paddingTop="10dp">
 
         <Button
             android:id="@+id/symbol1"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/btn_blue3"
             android:text="+"
             android:textAlignment="center"
             android:textSize="28sp" />
 
-        <TextView
-            android:layout_width="12dp"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/symbol2"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/btn_blue3"
             android:text="-"
             android:textAlignment="center"
             android:textSize="28sp" />
 
-        <TextView
-            android:layout_width="12dp"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/symbol3"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/btn_blue3"
             android:text="x"
             android:textAlignment="center"
             android:textSize="24sp" />
 
-        <TextView
-            android:layout_width="12dp"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/symbol4"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/btn_blue3"
             android:text="/"
             android:textAlignment="center"
             android:textSize="24sp" />
 
-        <TextView
-            android:layout_width="12dp"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/symbol5"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/btn_blue3"
             android:text="("
             android:textAlignment="center"
             android:textSize="24sp" />
 
-        <TextView
-            android:layout_width="12dp"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/symbol6"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/btn_blue3"
             android:text=")"
             android:textAlignment="center"
