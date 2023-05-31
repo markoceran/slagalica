@@ -24,6 +24,7 @@ import com.example.slagalica.tools.FragmentTransition;
 
 public class PocetnaStranicaFragment extends Fragment {
 
+
     public static PocetnaStranicaFragment newInstance(String someParam){
         Bundle args = new Bundle();
         args.putString("key","test");

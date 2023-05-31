@@ -14,18 +14,24 @@ import com.example.slagalica.fragments.AsocijacijeFragment;
 import com.example.slagalica.fragments.KoZnaZnaFragment;
 import com.example.slagalica.fragments.PocetnaStranicaFragment;
 import com.example.slagalica.fragments.SpojniceFragment;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //com.example.slagalica.tools.FragmentTransition.to(PocetnaStranicaFragment.newInstance("FTN"), this, false, R.id.activityMainLayout);
 
+        /*if korisnik ulogovan
         PocetnaStranicaFragment pocetnaStranica = PocetnaStranicaFragment.newInstance("test");
-        getSupportFragmentManager().beginTransaction().add(R.id.activityMainLayout,pocetnaStranica).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.activityMainLayout,pocetnaStranica).commit();*/
+        //else
+        KoZnaZnaFragment koZnaZnaFragment = KoZnaZnaFragment.newInstance("test");
+        getSupportFragmentManager().beginTransaction().add(R.id.activityMainLayout,koZnaZnaFragment).commit();
 
     }
 }
