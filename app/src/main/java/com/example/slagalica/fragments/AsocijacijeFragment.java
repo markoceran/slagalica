@@ -628,6 +628,12 @@ public class AsocijacijeFragment extends Fragment {
                         addPointsForKonacno();
                         openAllFields();
 
+                        // To stop the timer, call cancel() and onFinish()
+                        if (countDownTimer != null) {
+                            countDownTimer.cancel();
+                            countDownTimer.onFinish();
+                        }
+
                     }
                 }
                 return false;
