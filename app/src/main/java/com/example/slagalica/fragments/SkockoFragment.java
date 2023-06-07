@@ -123,6 +123,8 @@ public class SkockoFragment extends Fragment {
 
     private Button ok;
 
+    private int brojac = 0;
+
 
     public static SkockoFragment newInstance(String someParam) {
         Bundle args = new Bundle();
@@ -153,7 +155,7 @@ public class SkockoFragment extends Fragment {
         handler = new Handler();
 
         // Set the duration of the timer
-        long timerDurationMillis = 300000;
+        long timerDurationMillis = 30000;
 
         countDownTimer = new CountDownTimer(timerDurationMillis, 1000) {
             @Override
@@ -609,8 +611,129 @@ public class SkockoFragment extends Fragment {
                     }
                 }
 
+                if(okClickCounter == 1){
+                    for(Button color:colorButtonsColumn1){
+
+                        Drawable backgroundDrawable = color.getBackground();
+                        Drawable desiredDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.hit, null);
+                        if(backgroundDrawable.getConstantState().equals(desiredDrawable.getConstantState())) {
+                            brojac ++;
+                        }
+
+                    }
+                    if(brojac == 4){
+                        bluePlayer.setText("20");
+                        if (countDownTimer != null) {
+                            countDownTimer.cancel();
+                            countDownTimer.onFinish();
+                        }
+                    }else{
+                        brojac = 0;
+                    }
+                }else if(okClickCounter == 2){
+                    for(Button color:colorButtonsColumn2){
+
+                        Drawable backgroundDrawable = color.getBackground();
+                        Drawable desiredDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.hit, null);
+                        if(backgroundDrawable.getConstantState().equals(desiredDrawable.getConstantState())) {
+                            brojac ++;
+                        }
+
+                    }
+                    if(brojac == 4){
+                        bluePlayer.setText("20");
+                        if (countDownTimer != null) {
+                            countDownTimer.cancel();
+                            countDownTimer.onFinish();
+                        }
+                    }else{
+                        brojac = 0;
+                    }
+                }else if(okClickCounter == 3){
+                    for(Button color:colorButtonsColumn3){
+
+                        Drawable backgroundDrawable = color.getBackground();
+                        Drawable desiredDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.hit, null);
+                        if(backgroundDrawable.getConstantState().equals(desiredDrawable.getConstantState())) {
+                            brojac ++;
+                        }
+
+                    }
+                    if(brojac == 4){
+                        bluePlayer.setText("15");
+                        if (countDownTimer != null) {
+                            countDownTimer.cancel();
+                            countDownTimer.onFinish();
+                        }
+                    }else{
+                        brojac = 0;
+                    }
+                }else if(okClickCounter == 4){
+
+                    for(Button color:colorButtonsColumn4){
+
+                        Drawable backgroundDrawable = color.getBackground();
+                        Drawable desiredDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.hit, null);
+                        if(backgroundDrawable.getConstantState().equals(desiredDrawable.getConstantState())) {
+                            brojac ++;
+                        }
+
+                    }
+                    if(brojac == 4){
+                        bluePlayer.setText("15");
+                        if (countDownTimer != null) {
+                            countDownTimer.cancel();
+                            countDownTimer.onFinish();
+                        }
+                    }else{
+                        brojac = 0;
+                    }
+                }else if(okClickCounter == 5){
+                    for(Button color:colorButtonsColumn5){
+
+                        Drawable backgroundDrawable = color.getBackground();
+                        Drawable desiredDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.hit, null);
+                        if(backgroundDrawable.getConstantState().equals(desiredDrawable.getConstantState())) {
+                            brojac ++;
+                        }
+
+                    }
+                    if(brojac == 4){
+                        bluePlayer.setText("10");
+                        if (countDownTimer != null) {
+                            countDownTimer.cancel();
+                            countDownTimer.onFinish();
+                        }
+                    }else{
+                        brojac = 0;
+                    }
+
+                }else {
+                    for(Button color:colorButtonsColumn6){
+
+                        Drawable backgroundDrawable = color.getBackground();
+                        Drawable desiredDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.hit, null);
+                        if(backgroundDrawable.getConstantState().equals(desiredDrawable.getConstantState())) {
+                            brojac ++;
+                        }
+
+                    }
+                    if(brojac == 4){
+                        bluePlayer.setText("10");
+                        if (countDownTimer != null) {
+                            countDownTimer.cancel();
+                            countDownTimer.onFinish();
+                        }
+                    }else{
+                        brojac = 0;
+                    }
+
+                }
+
             }
         });
+
+
         buttonOwl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -923,6 +1046,7 @@ public class SkockoFragment extends Fragment {
 
     private void initializeButtons(View view) {
 
+        bluePlayer = view.findViewById(R.id.blue_player);
         ok = view.findViewById(R.id.button_ok);
 
         kolona1x1 = view.findViewById(R.id.column1row1);

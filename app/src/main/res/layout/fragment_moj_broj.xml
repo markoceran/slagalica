@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bgc"
     android:orientation="vertical"
-    android:theme="@style/Theme.Slagalica"
-    tools:context=".fragments.MojBrojFragment">
+    android:theme="@style/Theme.Slagalica">
 
     <LinearLayout
         android:id="@+id/header"

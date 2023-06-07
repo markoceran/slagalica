@@ -172,7 +172,7 @@ public class KorakPoKorakFragment extends Fragment {
                         // Perform the desired action after the delay
                         // Navigate to another fragment
                         MojBrojFragment mojBrojFragment = MojBrojFragment.newInstance("test");
-                        getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,mojBrojFragment).commit();
+                        getParentFragmentManager().beginTransaction().replace(R.id.korakPoKorakPage,mojBrojFragment).commit();
                     }
                 }, 4000); // 4 seconds delay
             }
