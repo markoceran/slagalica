@@ -6,17 +6,14 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 
 import com.example.slagalica.MainActivity;
 import com.example.slagalica.R;
@@ -70,6 +67,7 @@ public class AsocijacijeFragment extends Fragment {
     private int poeniUkupno = 0;
 
     private Button bluePlayer;
+
 
     public static AsocijacijeFragment newInstance(String someParam) {
         Bundle args = new Bundle();
@@ -137,6 +135,9 @@ public class AsocijacijeFragment extends Fragment {
             @Override
             public void onFinish() {
 
+                if(!konacno.getText().toString().equalsIgnoreCase((String) data.get("KONACNO"))){
+                    bluePlayer.setText("0");
+                }
                 // Perform the action when the timer is over
 
                 openAllFields();
