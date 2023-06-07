@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/skocko_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgc">
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_2"
-            android:text="10"
+            android:text=""
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:layout_marginRight="30dp"/>
@@ -49,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_red"
-            android:text="15"
+            android:text=""
             android:textColor="@android:color/white"
             android:textSize="24sp" />
 
@@ -93,14 +94,13 @@
 
         <Button
             android:id="@+id/column1row1"
-            android:layout_width="40dp"
+            android:layout_width="37dp"
             android:layout_height="40dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/btn_bg3"
             android:text=""
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:layout_marginRight="8dp"
-            />
+            android:textSize="20sp" />
         <Button
             android:id="@+id/column1row2"
             android:layout_width="40dp"
@@ -136,7 +136,7 @@
             android:id="@+id/column1row5"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:background="@drawable/circle"
+            android:background="@drawable/field"
             android:textAlignment="center"
             android:layout_marginRight="2dp"
             />
@@ -144,7 +144,7 @@
             android:id="@+id/column1row6"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:background="@drawable/circle"
+            android:background="@drawable/field"
             android:textAlignment="center"
             android:layout_marginRight="2dp"
             />
@@ -152,7 +152,7 @@
             android:id="@+id/column1row7"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:background="@drawable/circle"
+            android:background="@drawable/field"
             android:textAlignment="center"
             android:layout_marginRight="2dp"
             />
@@ -160,7 +160,7 @@
             android:id="@+id/column1row8"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:background="@drawable/circle"
+            android:background="@drawable/field"
             android:textAlignment="center"
             android:layout_marginRight="2dp"
             />
@@ -222,7 +222,7 @@
             android:id="@+id/column2row5"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:background="@drawable/circle"
+            android:background="@drawable/field"
             android:textAlignment="center"
             android:layout_marginRight="2dp"
             />
@@ -230,7 +230,7 @@
             android:id="@+id/column2row6"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:background="@drawable/circle"
+            android:background="@drawable/field"
             android:textAlignment="center"
             android:layout_marginRight="2dp"
             />
@@ -238,7 +238,7 @@
             android:id="@+id/column2row7"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:background="@drawable/circle"
+            android:background="@drawable/field"
             android:textAlignment="center"
             android:layout_marginRight="2dp"
             />
@@ -246,7 +246,7 @@
             android:id="@+id/column2row8"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:background="@drawable/circle"
+            android:background="@drawable/field"
             android:textAlignment="center"
             android:layout_marginRight="2dp"
             />
@@ -313,7 +313,7 @@
                 android:id="@+id/column3row5"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -321,7 +321,7 @@
                 android:id="@+id/column3row6"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -329,7 +329,7 @@
                 android:id="@+id/column3row7"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -337,7 +337,7 @@
                 android:id="@+id/column3row8"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -406,7 +406,7 @@
                 android:id="@+id/column4row5"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -414,7 +414,7 @@
                 android:id="@+id/column4row6"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -422,7 +422,7 @@
                 android:id="@+id/column4row7"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -430,7 +430,7 @@
                 android:id="@+id/column4row8"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -500,7 +500,7 @@
                 android:id="@+id/column5row5"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -508,7 +508,7 @@
                 android:id="@+id/column5row6"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -516,7 +516,7 @@
                 android:id="@+id/column5row7"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -524,7 +524,7 @@
                 android:id="@+id/column5row8"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -595,14 +595,14 @@
                 android:layout_width="37dp"
                 android:layout_height="37dp"
                 android:layout_marginRight="2dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center" />
 
             <Button
                 android:id="@+id/column6row6"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -610,7 +610,7 @@
                 android:id="@+id/column6row7"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -618,7 +618,7 @@
                 android:id="@+id/column6row8"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:background="@drawable/circle"
+                android:background="@drawable/field"
                 android:textAlignment="center"
                 android:layout_marginRight="2dp"
                 />
@@ -764,6 +764,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title11"></LinearLayout>
     <LinearLayout
+        android:id="@+id/title14"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -855,7 +856,41 @@
             android:paddingLeft="-2dp"
             />
 
-    </LinearLayout></LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/title15"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title14"
+        android:padding="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="4dp">
+        <Button
+            android:id="@+id/button_ok"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/okbutton"
+            android:textAlignment="center"
+            android:layout_marginRight="17dp"
+            android:drawablePadding="15dp"
+            android:paddingLeft="5dp"
+            android:textSize="20sp"
+            />
+        <Button
+            android:id="@+id/button_x"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/xbutton"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_marginRight="8dp"
+            android:paddingLeft="-2dp"
+            />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

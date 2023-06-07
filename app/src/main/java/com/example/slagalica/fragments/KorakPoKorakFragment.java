@@ -174,7 +174,7 @@ public class KorakPoKorakFragment extends Fragment {
                         MojBrojFragment mojBrojFragment = MojBrojFragment.newInstance("test");
                         getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,mojBrojFragment).commit();
                     }
-                }, 7000); // 7 seconds delay
+                }, 4000); // 4 seconds delay
             }
         };
 
