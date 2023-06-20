@@ -64,12 +64,14 @@ public class AsocijacijeFragment extends Fragment {
     private int poeniKolonaD = 6;
 
     private int poeniKonacno = 0;
-    private int poeniUkupno = 0;
+    private static int poeniUkupno;
 
     private Button bluePlayer;
 
 
-    public static AsocijacijeFragment newInstance(String someParam) {
+    public static AsocijacijeFragment newInstance(int someParam) {
+
+        poeniUkupno = someParam;
         Bundle args = new Bundle();
         args.putString("key", "test");
 
@@ -117,6 +119,7 @@ public class AsocijacijeFragment extends Fragment {
         konacno = view.findViewById(R.id.konacno);
 
         bluePlayer = view.findViewById(R.id.blue_player);
+        bluePlayer.setText(String.valueOf(poeniUkupno));
 
         timerButton = view.findViewById(R.id.stopwatch);
         handler = new Handler();
@@ -147,7 +150,7 @@ public class AsocijacijeFragment extends Fragment {
                     public void run() {
                         // Perform the desired action after the delay
                         // Navigate to another fragment
-                        SkockoFragment skockoFragment = SkockoFragment.newInstance("test");
+                        SkockoFragment skockoFragment = SkockoFragment.newInstance(poeniUkupno);
                         getParentFragmentManager().beginTransaction().replace(R.id.asocijacije_layout, skockoFragment).commit();
                     }
                 }, 7000); // 7 seconds delay

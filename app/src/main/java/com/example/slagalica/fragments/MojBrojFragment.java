@@ -68,7 +68,11 @@ public class MojBrojFragment extends Fragment {
     private boolean isSpinning = false;
     private int currentNumber;
 
-    public static MojBrojFragment newInstance(String someParam) {
+    private static int poeniUkupno;
+
+    public static MojBrojFragment newInstance(int someParam) {
+
+        poeniUkupno = someParam;
         Bundle args = new Bundle();
         args.putString("key", "test");
 
@@ -118,7 +122,7 @@ public class MojBrojFragment extends Fragment {
 
                 // Perform the action when the timer is over
 
-                bluePlayer.setText("0");
+                bluePlayer.setText(String.valueOf(poeniUkupno));
 
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -531,14 +535,15 @@ public class MojBrojFragment extends Fragment {
                         countDownTimer.cancel();
                         countDownTimer.onFinish();
                     }
-                    bluePlayer.setText("20");
+                    poeniUkupno += 20;
+                    bluePlayer.setText(String.valueOf(poeniUkupno));
 
                 }else {
                     if (countDownTimer != null) {
                         countDownTimer.cancel();
                         countDownTimer.onFinish();
                     }
-                    bluePlayer.setText("0");
+                    bluePlayer.setText(String.valueOf(poeniUkupno));
                 }
             }
         });
@@ -594,6 +599,7 @@ public class MojBrojFragment extends Fragment {
         resenjeBlue = view.findViewById(R.id.button_blue_number);
         trazenoResenje = view.findViewById(R.id.button_wanted_number);
         bluePlayer = view.findViewById(R.id.blue_player);
+        bluePlayer.setText(String.valueOf(poeniUkupno));
         timerButton = view.findViewById(R.id.stopwatch);
 
         numberButtons.add(broj1);

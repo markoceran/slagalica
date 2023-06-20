@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgc">
+    android:background="@drawable/bgc"
+    android:id="@+id/spojnicePage">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -26,7 +27,6 @@
             android:layout_marginRight="30dp"
             android:layout_weight="1"
             android:background="@drawable/btn_2"
-            android:text="10"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
 
@@ -38,7 +38,6 @@
             android:layout_marginRight="30dp"
             android:layout_weight="1"
             android:background="@drawable/btn_round_yellow"
-            android:text="60"
             android:textColor="@android:color/black"
             android:textSize="30sp" />
 
@@ -48,7 +47,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_red"
-            android:text="15"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
 
@@ -79,11 +77,13 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/temaTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Tema" />
+            android:text="Tema"
+            android:textColor="@color/white"
+            android:textSize="25dp"/>
 
 
     </LinearLayout>

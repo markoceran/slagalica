@@ -135,7 +135,7 @@ public class KoZnaZnaFragment extends Fragment {
                     public void run() {
                         // Perform the desired action after the delay
                         // Navigate to another fragment
-                        SpojniceFragment spojniceFragment = SpojniceFragment.newInstance("test");
+                        SpojniceFragment spojniceFragment = SpojniceFragment.newInstance(brojBodova);
                         getParentFragmentManager().beginTransaction().replace(R.id.koZnaZnaPage, spojniceFragment).commit();
                     }
                 }, 3); // 3 seconds delay
@@ -203,6 +203,7 @@ public class KoZnaZnaFragment extends Fragment {
                     bluePlayer.setText(String.valueOf(brojBodova));
 
                 }else{
+                    odgovor1.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRed));
                     for(Button b:odgovoriButtons){
                         if(b.getText().toString().equals(data.get("TACNO"))){
 
@@ -227,6 +228,7 @@ public class KoZnaZnaFragment extends Fragment {
                     bluePlayer.setText(String.valueOf(brojBodova));
 
                 }else{
+                    odgovor2.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRed));
                     for(Button b:odgovoriButtons){
                         if(b.getText().toString().equals(data.get("TACNO"))){
 
@@ -250,6 +252,7 @@ public class KoZnaZnaFragment extends Fragment {
                     bluePlayer.setText(String.valueOf(brojBodova));
 
                 }else{
+                    odgovor3.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRed));
                     for(Button b:odgovoriButtons){
                         if(b.getText().toString().equals(data.get("TACNO"))){
 
@@ -272,6 +275,7 @@ public class KoZnaZnaFragment extends Fragment {
                     bluePlayer.setText(String.valueOf(brojBodova));
 
                 }else{
+                    odgovor4.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorRed));
                     for(Button b:odgovoriButtons){
                         if(b.getText().toString().equals(data.get("TACNO"))){
 

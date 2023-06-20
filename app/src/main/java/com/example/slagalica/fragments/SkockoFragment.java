@@ -125,8 +125,12 @@ public class SkockoFragment extends Fragment {
 
     private int brojac = 0;
 
+    private static int poeniUkupno;
 
-    public static SkockoFragment newInstance(String someParam) {
+
+    public static SkockoFragment newInstance(int someParam) {
+
+        poeniUkupno = someParam;
         Bundle args = new Bundle();
         args.putString("key", "test");
 
@@ -175,7 +179,7 @@ public class SkockoFragment extends Fragment {
                     public void run() {
                         // Perform the desired action after the delay
                         // Navigate to another fragment
-                        KorakPoKorakFragment korakPoKorakFragment = KorakPoKorakFragment.newInstance("test");
+                        KorakPoKorakFragment korakPoKorakFragment = KorakPoKorakFragment.newInstance(poeniUkupno);
                         getChildFragmentManager().beginTransaction().replace(R.id.skocko_layout, korakPoKorakFragment).commit();
                     }
                 }, 5000); // 5 seconds delay
@@ -622,7 +626,8 @@ public class SkockoFragment extends Fragment {
 
                     }
                     if(brojac == 4){
-                        bluePlayer.setText("20");
+                        poeniUkupno += 20;
+                        bluePlayer.setText(String.valueOf(poeniUkupno));
                         if (countDownTimer != null) {
                             countDownTimer.cancel();
                             countDownTimer.onFinish();
@@ -641,7 +646,8 @@ public class SkockoFragment extends Fragment {
 
                     }
                     if(brojac == 4){
-                        bluePlayer.setText("20");
+                        poeniUkupno += 20;
+                        bluePlayer.setText(String.valueOf(poeniUkupno));
                         if (countDownTimer != null) {
                             countDownTimer.cancel();
                             countDownTimer.onFinish();
@@ -660,7 +666,8 @@ public class SkockoFragment extends Fragment {
 
                     }
                     if(brojac == 4){
-                        bluePlayer.setText("15");
+                        poeniUkupno += 15;
+                        bluePlayer.setText(String.valueOf(poeniUkupno));
                         if (countDownTimer != null) {
                             countDownTimer.cancel();
                             countDownTimer.onFinish();
@@ -680,7 +687,8 @@ public class SkockoFragment extends Fragment {
 
                     }
                     if(brojac == 4){
-                        bluePlayer.setText("15");
+                        poeniUkupno += 15;
+                        bluePlayer.setText(String.valueOf(poeniUkupno));
                         if (countDownTimer != null) {
                             countDownTimer.cancel();
                             countDownTimer.onFinish();
@@ -699,7 +707,8 @@ public class SkockoFragment extends Fragment {
 
                     }
                     if(brojac == 4){
-                        bluePlayer.setText("10");
+                        poeniUkupno += 10;
+                        bluePlayer.setText(String.valueOf(poeniUkupno));
                         if (countDownTimer != null) {
                             countDownTimer.cancel();
                             countDownTimer.onFinish();
@@ -719,7 +728,8 @@ public class SkockoFragment extends Fragment {
 
                     }
                     if(brojac == 4){
-                        bluePlayer.setText("10");
+                        poeniUkupno += 10;
+                        bluePlayer.setText(String.valueOf(poeniUkupno));
                         if (countDownTimer != null) {
                             countDownTimer.cancel();
                             countDownTimer.onFinish();
@@ -1047,6 +1057,7 @@ public class SkockoFragment extends Fragment {
     private void initializeButtons(View view) {
 
         bluePlayer = view.findViewById(R.id.blue_player);
+        bluePlayer.setText(String.valueOf(poeniUkupno));
         ok = view.findViewById(R.id.button_ok);
 
         kolona1x1 = view.findViewById(R.id.column1row1);

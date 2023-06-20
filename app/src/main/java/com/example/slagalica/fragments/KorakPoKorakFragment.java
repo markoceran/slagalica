@@ -44,14 +44,16 @@ public class KorakPoKorakFragment extends Fragment {
 
     private int poeniKorak1 = 20;
 
-    private  int poeniUkupno = 0;
+    private static int poeniUkupno;
 
     private Button bluePlayer;
 
 
 
 
-    public static KorakPoKorakFragment newInstance(String someParam){
+    public static KorakPoKorakFragment newInstance(int someParam){
+
+        poeniUkupno = someParam;
         Bundle args = new Bundle();
         args.putString("key","test");
 
@@ -85,6 +87,7 @@ public class KorakPoKorakFragment extends Fragment {
         button_row8 = view.findViewById(R.id.button_row8);
 
         bluePlayer = view.findViewById(R.id.blue_player);
+        bluePlayer.setText(String.valueOf(poeniUkupno));
 
         timerButton = view.findViewById(R.id.stopwatch);
         handler = new Handler();
@@ -171,7 +174,7 @@ public class KorakPoKorakFragment extends Fragment {
                     public void run() {
                         // Perform the desired action after the delay
                         // Navigate to another fragment
-                        MojBrojFragment mojBrojFragment = MojBrojFragment.newInstance("test");
+                        MojBrojFragment mojBrojFragment = MojBrojFragment.newInstance(poeniUkupno);
                         getParentFragmentManager().beginTransaction().replace(R.id.korakPoKorakPage,mojBrojFragment).commit();
                     }
                 }, 4000); // 4 seconds delay
@@ -307,22 +310,22 @@ public class KorakPoKorakFragment extends Fragment {
             poeniUkupno = poeniUkupno + poeniKorak1;
         }
         if (button_row8.getText().toString().equalsIgnoreCase((String) data.get("RESENJE")) && button_row2.getText().toString().equalsIgnoreCase((String) data.get("KORAK2"))){
-            poeniUkupno = poeniKorak1 - 2;
+            poeniUkupno = poeniUkupno + poeniKorak1 - 2;
         }
         if (button_row8.getText().toString().equalsIgnoreCase((String) data.get("RESENJE")) && button_row3.getText().toString().equalsIgnoreCase((String) data.get("KORAK3"))){
-            poeniUkupno = poeniKorak1 - 4;
+            poeniUkupno = poeniUkupno + poeniKorak1 - 4;
         }
         if (button_row8.getText().toString().equalsIgnoreCase((String) data.get("RESENJE")) && button_row4.getText().toString().equalsIgnoreCase((String) data.get("KORAK4"))){
-            poeniUkupno = poeniKorak1 - 6;
+            poeniUkupno = poeniUkupno + poeniKorak1 - 6;
         }
         if (button_row8.getText().toString().equalsIgnoreCase((String) data.get("RESENJE")) && button_row5.getText().toString().equalsIgnoreCase((String) data.get("KORAK5"))){
-            poeniUkupno = poeniKorak1 - 8;
+            poeniUkupno = poeniUkupno + poeniKorak1 - 8;
         }
         if (button_row8.getText().toString().equalsIgnoreCase((String) data.get("RESENJE")) && button_row6.getText().toString().equalsIgnoreCase((String) data.get("KORAK6"))){
-            poeniUkupno = poeniKorak1 - 10;
+            poeniUkupno = poeniUkupno + poeniKorak1 - 10;
         }
         if (button_row8.getText().toString().equalsIgnoreCase((String) data.get("RESENJE")) && button_row7.getText().toString().equalsIgnoreCase((String) data.get("KORAK7"))){
-            poeniUkupno = poeniKorak1 - 12;
+            poeniUkupno = poeniUkupno + poeniKorak1 - 12;
         }
 
 

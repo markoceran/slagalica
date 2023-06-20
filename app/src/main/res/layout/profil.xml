@@ -92,12 +92,30 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/izmeniPodatke"
+            android:id="@+id/statistikaIgara"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
+            android:text="Statistika igara" />
+
+        <Button
+            android:id="@+id/izmeniPodatke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:text="Izmeni podatke" />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="250dp"
+            android:text="Logout" />
+
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
