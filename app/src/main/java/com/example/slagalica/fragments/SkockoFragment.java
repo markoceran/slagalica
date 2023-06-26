@@ -180,7 +180,7 @@ public class SkockoFragment extends Fragment {
                         // Perform the desired action after the delay
                         // Navigate to another fragment
                         KorakPoKorakFragment korakPoKorakFragment = KorakPoKorakFragment.newInstance(poeniUkupno);
-                        getChildFragmentManager().beginTransaction().replace(R.id.skocko_layout, korakPoKorakFragment).commit();
+                        getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout, korakPoKorakFragment).commit();
                     }
                 }, 5000); // 5 seconds delay
             }

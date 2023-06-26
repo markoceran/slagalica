@@ -151,7 +151,7 @@ public class AsocijacijeFragment extends Fragment {
                         // Perform the desired action after the delay
                         // Navigate to another fragment
                         SkockoFragment skockoFragment = SkockoFragment.newInstance(poeniUkupno);
-                        getParentFragmentManager().beginTransaction().replace(R.id.asocijacije_layout, skockoFragment).commit();
+                        getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout, skockoFragment).commit();
                     }
                 }, 7000); // 7 seconds delay
             }

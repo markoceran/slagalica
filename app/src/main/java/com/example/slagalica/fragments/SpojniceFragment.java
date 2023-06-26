@@ -143,7 +143,7 @@ public class SpojniceFragment extends Fragment {
                         // Perform the desired action after the delay
                         // Navigate to another fragment
                         AsocijacijeFragment asocijacijeFragment = AsocijacijeFragment.newInstance(brojBodova);
-                        getParentFragmentManager().beginTransaction().replace(R.id.spojnicePage, asocijacijeFragment).commit();
+                        getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout, asocijacijeFragment).commit();
                     }
                 }, 3); // 3 seconds delay
             }

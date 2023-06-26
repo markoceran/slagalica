@@ -136,7 +136,7 @@ public class KoZnaZnaFragment extends Fragment {
                         // Perform the desired action after the delay
                         // Navigate to another fragment
                         SpojniceFragment spojniceFragment = SpojniceFragment.newInstance(brojBodova);
-                        getParentFragmentManager().beginTransaction().replace(R.id.koZnaZnaPage, spojniceFragment).commit();
+                        getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout, spojniceFragment).commit();
                     }
                 }, 3); // 3 seconds delay
             }
