@@ -1,12 +1,10 @@
 package com.example.slagalica.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,18 +12,25 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.slagalica.MainActivity;
 import com.example.slagalica.R;
-import com.example.slagalica.activities.Login;
-import com.example.slagalica.tools.FragmentTransition;
+import com.example.slagalica.model.Korisnik;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PocetnaStranicaFragment extends Fragment {
 
+    private Map<String, Object> data = new HashMap<>();
+    private Korisnik logovanKorisnik = new Korisnik();
+
+    private static String korisnikEmail;
 
     public static PocetnaStranicaFragment newInstance(String someParam){
+
+        korisnikEmail = someParam;
         Bundle args = new Bundle();
         args.putString("key","test");
 
@@ -61,7 +66,7 @@ public class PocetnaStranicaFragment extends Fragment {
         btnProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProfilFragment profilFragment = ProfilFragment.newInstance("test");
+                ProfilFragment profilFragment = ProfilFragment.newInstance(logovanKorisnik);
                 getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,profilFragment).commit();
             }
         });
@@ -76,7 +81,7 @@ public class PocetnaStranicaFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getData();
     }
 
     @Override
@@ -101,5 +106,48 @@ public class PocetnaStranicaFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         //Toast.makeText(getActivity(), "onDeatach()", Toast.LENGTH_SHORT).show();
+    }
+
+    public void getData() {
+        MainActivity.db.collection("korisnici")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        // Get the document data and convert it to a map
+                        Map<String, Object> documentData = document.getData();
+
+                        // Extract the 'korisnickoIme' field as the key
+                        String korisnickoIme = (String) documentData.get("korisnickoIme");
+
+                        // Add the document data to the 'data' map using 'korisnickoIme' as the key
+                        data.put(korisnickoIme, documentData);
+                    }
+
+                    findLoggedUser(korisnikEmail);
+                    if (logovanKorisnik != null) {
+                        Toast.makeText(getActivity(), "Hello " + logovanKorisnik.getKorisnickoIme(), Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getActivity(), "Error loading data", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    private void findLoggedUser(String email){
+
+        for (Object value : data.values()) {
+            if (value instanceof Map) {
+                Map<String, Object> user = (Map<String, Object>) value;
+                if (user.get("email").equals(email)) {
+
+                    logovanKorisnik.setKorisnickoIme((String) user.get("korisnickoIme"));
+                    logovanKorisnik.setEmail((String) user.get("email"));
+                    logovanKorisnik.setsifra((String) user.get("sifra"));
+
+                    break;
+                }
+            }
+        }
     }
 }

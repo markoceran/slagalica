@@ -1,9 +1,5 @@
 package com.example.slagalica.activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,28 +9,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slagalica.MainActivity;
 import com.example.slagalica.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-    CollectionReference collectionRef = firestore.collection("korisnici");
+
+    CollectionReference collectionRef =  MainActivity.db.collection("korisnici");
     //DocumentReference documentRef = collectionRef.document("k2FdSWmo7q6VJR6xz48g");
-    public Map<String, Object> data = new HashMap<>();
+    private Map<String, Object> data = new HashMap<>();
 
     TextView btn;
     private EditText inputUsername, inputPassword, inputEmail, inputConformPassword;
@@ -54,6 +48,8 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(RegisterActivity.this);
 
+        getData();
+
         btnRegister = findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,18 +67,25 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        getData();
     }
 
     private void checkCredentials() {
-        String username = inputUsername.getText().toString();
-        String email = inputEmail.getText().toString();
-        String password = inputPassword.getText().toString();
-        String conformPassword = inputConformPassword.getText().toString();
+        String username = inputUsername.getText().toString().trim();
+        String email = inputEmail.getText().toString().trim();
+        String password = inputPassword.getText().toString().trim();
+        String conformPassword = inputConformPassword.getText().toString().trim();
 
         if (username.isEmpty() || username.length()<7)
         {
             showError(inputUsername, "Vaše korisničko ime nije validno!");
+        }
+        else if (isEmailExists(email))
+        {
+            showError(inputEmail, "Korisnik sa unetim email-om već postoji");
+        }
+        else if (isUsernameExists(username))
+        {
+            showError(inputUsername, "Korisnik sa unetim korisničkim imenom već postoji");
         }
         else if (email.isEmpty() || !email.contains("@"))
         {
@@ -98,32 +101,37 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else
         {
-            Map<String, Object> data = new HashMap<>();
+            Map<String, Object> dataUser = new HashMap<>();
             mLoadingBar.setTitle("Registration");
             mLoadingBar.setMessage("Molimo sačekajte dok proverimo kredencijale");
-            data.put("korisnickoIme", username);
-            data.put("email", email);
-            data.put("sifra", password);
+            dataUser.put("korisnickoIme", username);
+            dataUser.put("email", email);
+            dataUser.put("sifra", password);
 
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
 
             // Set the data in Firestore
-            collectionRef.add(data)
+            collectionRef.add(dataUser)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            // Document added successfully
+                            Toast.makeText(RegisterActivity.this, "Uspešna registracija", Toast.LENGTH_SHORT).show();
+
+                            mLoadingBar.dismiss();
+                            Intent intent = new Intent(RegisterActivity.this, StartUpActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            // Error adding document
+                            Toast.makeText(RegisterActivity.this, "Neuspešna registracija", Toast.LENGTH_SHORT).show();
                         }
                     });
 
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            /*mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -141,7 +149,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(RegisterActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
-            });
+            });*/
         }
     }
 
@@ -151,40 +159,52 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    private boolean isEmailExists(String email) {
+
+        for (Object value : data.values()) {
+            if (value instanceof Map) {
+                Map<String, Object> user = (Map<String, Object>) value;
+                if (user.get("email").equals(email)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isUsernameExists(String username) {
+
+        for (Object value : data.values()) {
+            if (value instanceof Map) {
+                Map<String, Object> user = (Map<String, Object>) value;
+                if (user.get("korisnickoIme").equals(username)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     public void getData() {
-
-        //Dobavljanje podataka
-
         MainActivity.db.collection("korisnici")
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
 
-                            QuerySnapshot querySnapshot = task.getResult();
-                            if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        // Get the document data and convert it to a map
+                        Map<String, Object> documentData = document.getData();
 
-                                // Get a random document from the query snapshot
-                                int randomIndex = (int) (Math.random() * querySnapshot.size());
-                                DocumentSnapshot randomDocument = querySnapshot.getDocuments().get(randomIndex);
+                        // Extract the 'korisnickoIme' field as the key
+                        String korisnickoIme = (String) documentData.get("korisnickoIme");
 
-                                data = randomDocument.getData();
-
-                                //setButtonClickListener();
-
-
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Error load data", Toast.LENGTH_SHORT).show();
-                            }
-
-
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Error getting documents", Toast.LENGTH_SHORT).show();
-                        }
-
+                        // Add the document data to the 'data' map using 'korisnickoIme' as the key
+                        data.put(korisnickoIme, documentData);
                     }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error loading data", Toast.LENGTH_SHORT).show();
                 });
-
     }
 /*
     private void setButtonClickListener() {

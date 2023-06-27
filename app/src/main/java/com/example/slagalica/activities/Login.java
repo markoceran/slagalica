@@ -1,8 +1,5 @@
 package com.example.slagalica.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,15 +9,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slagalica.MainActivity;
 import com.example.slagalica.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
+    private Map<String, Object> data = new HashMap<>();
+
+    private boolean isLogged = false;
     TextView btn;
     EditText inputEmail, inputPassword;
     Button btnLogin;
@@ -30,26 +33,30 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
         btn=findViewById(R.id.textViewSignUp);
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         btnLogin = findViewById(R.id.btnlogin);
         mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(Login.this);
+
+        getData();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkCredentials();
             }
         });
-/*
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Login.this,RegisterActivity.class));
             }
         });
-
+/*
         TextView btnLogin=findViewById(R.id.btnlogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +68,8 @@ public class Login extends AppCompatActivity {
 
     }
     private void checkCredentials() {
-        String email = inputEmail.getText().toString();
-        String password = inputPassword.getText().toString();
+        String email = inputEmail.getText().toString().trim();
+        String password = inputPassword.getText().toString().trim();
 
         if (email.isEmpty() || !email.contains("@"))
         {
@@ -79,7 +86,32 @@ public class Login extends AppCompatActivity {
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
 
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            for (Object value : data.values()) {
+                if (value instanceof Map) {
+                    Map<String, Object> user = (Map<String, Object>) value;
+                    if (user.get("email").equals(email) && user.get("sifra").equals(password)) {
+                        isLogged = true;
+                        break;
+                    }
+                }
+            }
+            mLoadingBar.dismiss();
+
+            if(isLogged){
+
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("emailKorisnika" , email);
+                startActivity(intent);
+
+            }else {
+                Toast.makeText(Login.this, "Neuspešna prijava", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+
+            /*mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful())
@@ -90,7 +122,7 @@ public class Login extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }
-            });
+            });*/
         }
     }
 
@@ -99,4 +131,27 @@ public class Login extends AppCompatActivity {
         input.requestFocus();
 
     }
+
+    public void getData() {
+        MainActivity.db.collection("korisnici")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        // Get the document data and convert it to a map
+                        Map<String, Object> documentData = document.getData();
+
+                        // Extract the 'korisnickoIme' field as the key
+                        String korisnickoIme = (String) documentData.get("korisnickoIme");
+
+                        // Add the document data to the 'data' map using 'korisnickoIme' as the key
+                        data.put(korisnickoIme, documentData);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error loading data", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+
 }

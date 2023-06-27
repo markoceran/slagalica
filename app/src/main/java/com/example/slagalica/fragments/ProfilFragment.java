@@ -1,21 +1,40 @@
 package com.example.slagalica.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.slagalica.R;
+import com.example.slagalica.activities.StartUpActivity;
+import com.example.slagalica.model.Korisnik;
 
 public class ProfilFragment extends Fragment {
 
-    public static ProfilFragment newInstance(String someParam){
+    private static Korisnik logovaniKorisnik;
+    private TextView korisnickoIme;
+    private TextView email;
+    private TextView lozinka;
+
+    private Button odjava;
+
+    private boolean isPasswordVisible = false;
+
+
+
+    public static ProfilFragment newInstance(Korisnik korisnik){
         Bundle args = new Bundle();
         args.putString("key","test");
+
+        logovaniKorisnik = korisnik;
 
         ProfilFragment fragment = new ProfilFragment();
         fragment.setArguments(args);
@@ -35,7 +54,55 @@ public class ProfilFragment extends Fragment {
         TextView textView = view.findViewById(R.id.relativeTitle);
         textView.setText(R.string.relativelayout);
         */
+
+        korisnickoIme = view.findViewById(R.id.korisnickoIme);
+        email = view.findViewById(R.id.email);
+        lozinka = view.findViewById(R.id.lozinka);
+        odjava = view.findViewById(R.id.logout);
+
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setProfilData();
+        setOnClickListener();
+    }
+
+    private void setProfilData(){
+
+        email.setText(logovaniKorisnik.getEmail());
+        korisnickoIme.setText(logovaniKorisnik.getKorisnickoIme());
+        lozinka.setText(logovaniKorisnik.getsifra());
+
+    }
+
+    private void setOnClickListener(){
+
+        lozinka.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (isPasswordVisible) {
+                    lozinka.setInputType(InputType.TYPE_CLASS_TEXT);
+                    isPasswordVisible = false;
+                } else {
+                    lozinka.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    isPasswordVisible = true;
+                }
+
+            }
+        });
+
+        odjava.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), StartUpActivity.class));
+            }
+        });
+
+
     }
 }
 

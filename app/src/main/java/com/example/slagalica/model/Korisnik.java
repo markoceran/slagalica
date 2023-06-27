@@ -2,46 +2,24 @@ package com.example.slagalica.model;
 
 public class Korisnik {
 
-    private String ime;
-    private String prezime;
     private String email;
-    private String lozinka;
+    private String sifra;
     private String korisnickoIme;
-    private String imageUrl;
 
 
-    public Korisnik(String ime, String prezime, String email, String lozinka, String korisnickoIme, String imageUrl) {
-        this.ime = ime;
-        this.prezime = prezime;
+
+    public Korisnik(String email, String sifra, String korisnickoIme) {
+
         this.email = email;
-        this.lozinka = lozinka;
+        this.sifra = sifra;
         this.korisnickoIme = korisnickoIme;
-        this.imageUrl = imageUrl;
+
     }
 
     public Korisnik() {
-        this.ime = "";
-        this.prezime = "";
         this.email = "";
-        this.lozinka = "";
+        this.sifra = "";
         this.korisnickoIme = "";
-        this.imageUrl = "";
-    }
-
-    public String getIme() {
-        return ime;
-    }
-
-    public void setIme(String ime) {
-        this.ime = ime;
-    }
-
-    public String getPrezime() {
-        return prezime;
-    }
-
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
     }
 
     public String getEmail() {
@@ -52,12 +30,12 @@ public class Korisnik {
         this.email = email;
     }
 
-    public String getLozinka() {
-        return lozinka;
+    public String getsifra() {
+        return sifra;
     }
 
-    public void setLozinka(String lozinka) {
-        this.lozinka = lozinka;
+    public void setsifra(String sifra) {
+        this.sifra = sifra;
     }
 
     public String getKorisnickoIme() {
@@ -68,23 +46,13 @@ public class Korisnik {
         this.korisnickoIme = korisnickoIme;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
     @Override
     public String toString() {
         return "Korisnik{" +
-                "ime='" + ime + '\'' +
-                ", prezime='" + prezime + '\'' +
-                ", email='" + email + '\'' +
-                ", lozinka='" + lozinka + '\'' +
+                "email='" + email + '\'' +
+                ", sifra='" + sifra + '\'' +
                 ", korisnickoIme='" + korisnickoIme + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }
