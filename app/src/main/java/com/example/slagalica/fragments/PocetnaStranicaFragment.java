@@ -171,6 +171,7 @@ public class PocetnaStranicaFragment extends Fragment {
                     logovanKorisnik.setSifra((String) user.get("sifra"));
                     logovanKorisnik.setTokeni((Long) user.get("tokeni"));
                     logovanKorisnik.setZvezde((Long) user.get("zvezde"));
+                    logovanKorisnik.setProfilePicture((String) user.get("profilePicture"));
 
                     logovanKorisnik.setBodoviKoZnaZna((Long) user.get("bodoviKoZnaZna"));
                     logovanKorisnik.setBodoviKorakPoKorak((Long) user.get("bodoviKorakPoKorak"));

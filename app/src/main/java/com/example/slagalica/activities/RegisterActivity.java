@@ -108,6 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
             dataUser.put("korisnickoIme", username);
             dataUser.put("email", email);
             dataUser.put("sifra", password);
+            dataUser.put("profilePicture", "");
             dataUser.put("tokeni", 5);
             dataUser.put("zvezde", 0);
 

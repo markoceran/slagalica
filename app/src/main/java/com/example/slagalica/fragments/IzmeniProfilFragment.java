@@ -1,23 +1,15 @@
 package com.example.slagalica.fragments;
 
-import static android.app.Activity.RESULT_OK;
 import static com.example.slagalica.MainActivity.db;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -30,22 +22,20 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.slagalica.MainActivity;
 import com.example.slagalica.R;
-import com.example.slagalica.activities.RegisterActivity;
 import com.example.slagalica.activities.StartUpActivity;
 import com.example.slagalica.model.Korisnik;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -53,20 +43,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-
-import io.socket.client.Url;
 
 public class IzmeniProfilFragment extends Fragment {
 
@@ -151,7 +133,7 @@ public class IzmeniProfilFragment extends Fragment {
 
         email.setText(logovaniKorisnik2.getEmail());
         korisnickoIme.setText(logovaniKorisnik2.getKorisnickoIme());
-        lozinka.setText(logovaniKorisnik2.getsifra());
+        lozinka.setText(logovaniKorisnik2.getSifra());
 
         String base64Image = logovaniKorisnik2.getProfilePicture();
         if (!TextUtils.isEmpty(base64Image)) {
@@ -237,7 +219,7 @@ public class IzmeniProfilFragment extends Fragment {
 
                 logovaniKorisnik2.setEmail(updatedEmail);
                 logovaniKorisnik2.setKorisnickoIme(updatedKorisnickoIme);
-                logovaniKorisnik2.setsifra(updatedLozinka);
+                logovaniKorisnik2.setSifra(updatedLozinka);
 
                 Map<String, Object> dataUser = new HashMap<>();
                 dataUser.put("korisnickoIme", updatedKorisnickoIme);

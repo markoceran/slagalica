@@ -15,10 +15,10 @@ public class Korisnik {
     private long bodoviSpojnice;
     private long pobedjenePartije;
     private long izgubljenePartije;
+    private String profilePicture;
 
 
     public Korisnik() {
-
         this.email = "";
         this.sifra = "";
         this.korisnickoIme = "";
@@ -32,9 +32,10 @@ public class Korisnik {
         this.bodoviSpojnice = 0;
         this.pobedjenePartije = 0;
         this.izgubljenePartije = 0;
+        this.profilePicture = "";
     }
 
-    public Korisnik(String email, String sifra, String korisnickoIme, long zvezde, long tokeni, long bodoviKoZnaZna, long bodoviKorakPoKorak, long bodoviAsocijacije, long bodoviMojBroj, long bodoviSkocko, long bodoviSpojnice, long pobedjenePartije, long izgubljenePartije) {
+    public Korisnik(String email, String sifra, String korisnickoIme, long zvezde, long tokeni, long bodoviKoZnaZna, long bodoviKorakPoKorak, long bodoviAsocijacije, long bodoviMojBroj, long bodoviSkocko, long bodoviSpojnice, long pobedjenePartije, long izgubljenePartije, String profilePicture) {
         this.email = email;
         this.sifra = sifra;
         this.korisnickoIme = korisnickoIme;
@@ -48,12 +49,7 @@ public class Korisnik {
         this.bodoviSpojnice = bodoviSpojnice;
         this.pobedjenePartije = pobedjenePartije;
         this.izgubljenePartije = izgubljenePartije;
-    }
-
-    public Korisnik(String email, String sifra, String korisnickoIme) {
-        this.email = email;
-        this.sifra = sifra;
-        this.korisnickoIme = korisnickoIme;
+        this.profilePicture = profilePicture;
     }
 
     public String getEmail() {
@@ -158,5 +154,33 @@ public class Korisnik {
 
     public void setIzgubljenePartije(long izgubljenePartije) {
         this.izgubljenePartije = izgubljenePartije;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    @Override
+    public String toString() {
+        return "Korisnik{" +
+                "email='" + email + '\'' +
+                ", sifra='" + sifra + '\'' +
+                ", korisnickoIme='" + korisnickoIme + '\'' +
+                ", zvezde=" + zvezde +
+                ", tokeni=" + tokeni +
+                ", bodoviKoZnaZna=" + bodoviKoZnaZna +
+                ", bodoviKorakPoKorak=" + bodoviKorakPoKorak +
+                ", bodoviAsocijacije=" + bodoviAsocijacije +
+                ", bodoviMojBroj=" + bodoviMojBroj +
+                ", bodoviSkocko=" + bodoviSkocko +
+                ", bodoviSpojnice=" + bodoviSpojnice +
+                ", pobedjenePartije=" + pobedjenePartije +
+                ", izgubljenePartije=" + izgubljenePartije +
+                ", profilePicture='" + profilePicture + '\'' +
+                '}';
     }
 }
