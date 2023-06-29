@@ -91,6 +91,8 @@ public class Login extends AppCompatActivity {
                     Map<String, Object> user = (Map<String, Object>) value;
                     if (user.get("email").equals(email) && user.get("sifra").equals(password)) {
                         isLogged = true;
+                        Toast.makeText(Login.this, "Hello " + user.get("korisnickoIme"), Toast.LENGTH_LONG).show();
+
                         break;
                     }
                 }

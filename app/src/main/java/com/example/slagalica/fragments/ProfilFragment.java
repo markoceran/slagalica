@@ -1,5 +1,7 @@
 package com.example.slagalica.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -29,10 +31,9 @@ public class ProfilFragment extends Fragment {
     private boolean isPasswordVisible = false;
 
 
-
-    public static ProfilFragment newInstance(Korisnik korisnik){
+    public static ProfilFragment newInstance(Korisnik korisnik) {
         Bundle args = new Bundle();
-        args.putString("key","test");
+        args.putString("key", "test");
 
         logovaniKorisnik = korisnik;
 
@@ -68,17 +69,19 @@ public class ProfilFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setProfilData();
         setOnClickListener();
+
     }
 
-    private void setProfilData(){
+
+    private void setProfilData() {
 
         email.setText(logovaniKorisnik.getEmail());
         korisnickoIme.setText(logovaniKorisnik.getKorisnickoIme());
-        lozinka.setText(logovaniKorisnik.getsifra());
+        lozinka.setText(logovaniKorisnik.getSifra());
 
     }
 
-    private void setOnClickListener(){
+    private void setOnClickListener() {
 
         lozinka.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +101,35 @@ public class ProfilFragment extends Fragment {
         odjava.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), StartUpActivity.class));
+
+                // Create an AlertDialog.Builder instance
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                // Set the dialog title and message
+                builder.setTitle("ODJAVA")
+                        .setMessage("Da li ste sigurni da želite da se odjavite sa profila?");
+
+
+                builder.setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(getActivity(), StartUpActivity.class));
+                    }
+                });
+
+
+                builder.setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
             }
         });
 

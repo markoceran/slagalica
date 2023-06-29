@@ -104,9 +104,23 @@ public class RegisterActivity extends AppCompatActivity {
             Map<String, Object> dataUser = new HashMap<>();
             mLoadingBar.setTitle("Registration");
             mLoadingBar.setMessage("Molimo sačekajte dok proverimo kredencijale");
+
             dataUser.put("korisnickoIme", username);
             dataUser.put("email", email);
             dataUser.put("sifra", password);
+            dataUser.put("tokeni", 5);
+            dataUser.put("zvezde", 0);
+
+            dataUser.put("bodoviKoZnaZna", 0);
+            dataUser.put("bodoviKorakPoKorak", 0);
+            dataUser.put("bodoviAsocijacije", 0);
+            dataUser.put("bodoviMojBroj", 0);
+            dataUser.put("bodoviSkocko", 0);
+            dataUser.put("bodoviSpojnice", 0);
+
+            dataUser.put("pobedjenePartije", 0);
+            dataUser.put("izgubljenePartije", 0);
+
 
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();

@@ -1,6 +1,8 @@
 package com.example.slagalica.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -15,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.slagalica.R;
 import com.example.slagalica.activities.StartUpActivity;
+import com.example.slagalica.tools.ShakeDetector;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -24,7 +27,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class MojBrojFragment extends Fragment {
+public class MojBrojFragment extends Fragment implements ShakeDetector.OnShakeListener {
 
     private CountDownTimer countDownTimer;
     private Button timerButton;
@@ -70,6 +73,8 @@ public class MojBrojFragment extends Fragment {
 
     private static int poeniUkupno;
 
+    private ShakeDetector shakeDetector;
+
     public static MojBrojFragment newInstance(int someParam) {
 
         poeniUkupno = someParam;
@@ -94,6 +99,11 @@ public class MojBrojFragment extends Fragment {
         TextView textView = view.findViewById(R.id.relativeTitle);
         textView.setText(R.string.relativelayout);
         */
+
+        // Get the SensorManager
+        SensorManager sensorManager = (SensorManager) requireActivity().getSystemService(Context.SENSOR_SERVICE);
+        // Create the ShakeDetector
+        shakeDetector = new ShakeDetector(sensorManager, this);
 
         initializeButtons(view);
 
@@ -510,7 +520,7 @@ public class MojBrojFragment extends Fragment {
                         enableAllButtons();
                         enableClickListener(view, lastChar);
 
-                    }else{
+                    } else {
                         unetiIzraz = unetiIzraz.substring(0, unetiIzraz.length() - 1);
                     }
 
@@ -529,7 +539,7 @@ public class MojBrojFragment extends Fragment {
             public void onClick(View view) {
 
                 handler2.removeCallbacksAndMessages(null);
-                if(resenjeBlue.getText().toString().equals(trazenoResenje.getText().toString())){
+                if (resenjeBlue.getText().toString().equals(trazenoResenje.getText().toString())) {
 
                     if (countDownTimer != null) {
                         countDownTimer.cancel();
@@ -538,7 +548,7 @@ public class MojBrojFragment extends Fragment {
                     poeniUkupno += 20;
                     bluePlayer.setText(String.valueOf(poeniUkupno));
 
-                }else {
+                } else {
                     if (countDownTimer != null) {
                         countDownTimer.cancel();
                         countDownTimer.onFinish();
@@ -561,7 +571,7 @@ public class MojBrojFragment extends Fragment {
 
     private void enableAllButtons() {
         for (Button button : numberButtons) {
-            if(button.isEnabled()){
+            if (button.isEnabled()) {
                 button.setClickable(true);
             }
 
@@ -571,7 +581,7 @@ public class MojBrojFragment extends Fragment {
 
     private void disableAllButtons(Button checkButton) {
         for (Button button : numberButtons) {
-            if(button == checkButton){
+            if (button == checkButton) {
                 continue;
             }
             button.setClickable(false);
@@ -650,4 +660,36 @@ public class MojBrojFragment extends Fragment {
             countDownTimer.cancel();
         }
     }
+
+
+    //SHAKE SENZOR
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Start listening for shake gestures
+        shakeDetector.start();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // Stop listening for shake gestures
+        shakeDetector.stop();
+    }
+
+    @Override
+    public void onShake() {
+        // Perform the desired action when a shake gesture is detected
+
+        isSpinning = false;
+        handler2.removeCallbacks(spinnerRunnable7); // Stop the spinning animation
+        handler2.removeCallbacks(spinnerRunnable1); // Stop the spinning animation
+        handler2.removeCallbacks(spinnerRunnable2); // Stop the spinning animation
+        handler2.removeCallbacks(spinnerRunnable3); // Stop the spinning animation
+        handler2.removeCallbacks(spinnerRunnable4); // Stop the spinning animation
+        handler2.removeCallbacks(spinnerRunnable5); // Stop the spinning animation
+        handler2.removeCallbacks(spinnerRunnable6); // Stop the spinning animation
+
+    }
+
 }

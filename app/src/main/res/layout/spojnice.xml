@@ -82,6 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Tema"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="25dp"/>
 

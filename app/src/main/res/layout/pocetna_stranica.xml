@@ -8,20 +8,19 @@
     android:background="@drawable/aa"
     android:theme="@style/Theme.Slagalica">
 
-    <EditText
+    <TextView
         android:id="@+id/brojZvezdaText"
         android:layout_width="63dp"
         android:layout_height="40dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="152dp"
         android:background="#805996D6"
-        android:ems="10"
-        android:text="0/100"
         app:layout_constraintBottom_toTopOf="@+id/brojTokenaText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/zvezda"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.036"
+        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -32,7 +31,6 @@
         android:layout_marginEnd="168dp"
         android:layout_marginBottom="48dp"
         android:background="#268E8D8D"
-        android:text="0"
         android:textAlignment="textStart"
         app:layout_constraintBottom_toTopOf="@+id/zapocniIgruButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -383,7 +381,7 @@
 
     <Button
         android:id="@+id/dodajPrijateljaButton"
-        android:layout_width="89dp"
+        android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:layout_marginEnd="4dp"
         android:background="@color/colorPrimaryDark"

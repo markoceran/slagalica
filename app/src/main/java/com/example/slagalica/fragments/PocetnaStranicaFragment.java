@@ -1,7 +1,7 @@
 package com.example.slagalica.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +21,19 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.socket.emitter.Emitter;
+
 public class PocetnaStranicaFragment extends Fragment {
 
     private Map<String, Object> data = new HashMap<>();
     private Korisnik logovanKorisnik = new Korisnik();
 
     private static String korisnikEmail;
+
+    private TextView brojTokena;
+
+    private TextView brojZvezda;
+
 
     public static PocetnaStranicaFragment newInstance(String someParam){
 
@@ -54,13 +61,20 @@ public class PocetnaStranicaFragment extends Fragment {
         */
 
         TextView btnZapocniIgru = view.findViewById(R.id.zapocniIgruButton);
-        btnZapocniIgru.setOnClickListener(new View.OnClickListener() {
+
+
+        btnZapocniIgru.setOnClickListener(v -> {
+            MainActivity.socket.emit("zapocni igru");
+        });
+
+        /*btnZapocniIgru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 KoZnaZnaFragment koZnaZnaFragment = KoZnaZnaFragment.newInstance("test");
                 getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,koZnaZnaFragment).commit();
             }
-        });
+        });*/
+
 
         ImageView btnProfil = view.findViewById(R.id.profil);
         btnProfil.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +84,9 @@ public class PocetnaStranicaFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,profilFragment).commit();
             }
         });
+
+        brojTokena = view.findViewById(R.id.brojTokenaText);
+        brojZvezda = view.findViewById(R.id.brojZvezdaText);
 
         return view;
 
@@ -81,32 +98,41 @@ public class PocetnaStranicaFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        MainActivity.socket.on("zapocni igru", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                // Handle the 'zapocni igru' event from the server
+                // Note: This will be executed on a background thread, so if you want to update UI components, you should use runOnUiThread or similar methods
+                if (args.length > 0 && args[0] != null) {
+                    Log.i("SOCKET", args[0].toString());
+
+                    // Perform UI operations in the main thread
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            KoZnaZnaFragment koZnaZnaFragment = KoZnaZnaFragment.newInstance(korisnikEmail);
+                            getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout, koZnaZnaFragment).commit();
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         getData();
+
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        //Toast.makeText(getActivity(), "onAttach()", Toast.LENGTH_SHORT).show();
+    private void setData() {
+        brojTokena.setText(String.valueOf(logovanKorisnik.getTokeni()));
+        brojZvezda.setText(String.valueOf(logovanKorisnik.getZvezde()));
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        //Toast.makeText(getActivity(), "onDestroyView()", Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        //Toast.makeText(getActivity(), "onStop()", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        //Toast.makeText(getActivity(), "onDeatach()", Toast.LENGTH_SHORT).show();
-    }
 
     public void getData() {
         MainActivity.db.collection("korisnici")
@@ -125,9 +151,8 @@ public class PocetnaStranicaFragment extends Fragment {
                     }
 
                     findLoggedUser(korisnikEmail);
-                    if (logovanKorisnik != null) {
-                        Toast.makeText(getActivity(), "Hello " + logovanKorisnik.getKorisnickoIme(), Toast.LENGTH_LONG).show();
-                    }
+                    setData();
+
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getActivity(), "Error loading data", Toast.LENGTH_SHORT).show();
@@ -143,11 +168,24 @@ public class PocetnaStranicaFragment extends Fragment {
 
                     logovanKorisnik.setKorisnickoIme((String) user.get("korisnickoIme"));
                     logovanKorisnik.setEmail((String) user.get("email"));
-                    logovanKorisnik.setsifra((String) user.get("sifra"));
+                    logovanKorisnik.setSifra((String) user.get("sifra"));
+                    logovanKorisnik.setTokeni((Long) user.get("tokeni"));
+                    logovanKorisnik.setZvezde((Long) user.get("zvezde"));
+
+                    logovanKorisnik.setBodoviKoZnaZna((Long) user.get("bodoviKoZnaZna"));
+                    logovanKorisnik.setBodoviKorakPoKorak((Long) user.get("bodoviKorakPoKorak"));
+                    logovanKorisnik.setBodoviAsocijacije((Long) user.get("bodoviAsocijacije"));
+                    logovanKorisnik.setBodoviMojBroj((Long) user.get("bodoviMojBroj"));
+                    logovanKorisnik.setBodoviSkocko((Long) user.get("bodoviSkocko"));
+                    logovanKorisnik.setBodoviSpojnice((Long) user.get("bodoviSpojnice"));
+
+                    logovanKorisnik.setPobedjenePartije((Long) user.get("pobedjenePartije"));
+                    logovanKorisnik.setIzgubljenePartije((Long) user.get("izgubljenePartije"));
 
                     break;
                 }
             }
         }
     }
+
 }
