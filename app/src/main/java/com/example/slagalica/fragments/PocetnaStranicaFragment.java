@@ -144,6 +144,7 @@ public class PocetnaStranicaFragment extends Fragment {
                     logovanKorisnik.setKorisnickoIme((String) user.get("korisnickoIme"));
                     logovanKorisnik.setEmail((String) user.get("email"));
                     logovanKorisnik.setsifra((String) user.get("sifra"));
+                    logovanKorisnik.setProfilePicture((String) user.get("profilePicture"));
 
                     break;
                 }

@@ -1,8 +1,11 @@
 package com.example.slagalica.activities;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +17,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slagalica.MainActivity;
 import com.example.slagalica.R;
+import com.example.slagalica.model.Korisnik;
+import com.example.slagalica.model.Korisnik1;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -107,6 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
             dataUser.put("korisnickoIme", username);
             dataUser.put("email", email);
             dataUser.put("sifra", password);
+            dataUser.put("profilePicture", "");
 
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
@@ -118,6 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onSuccess(DocumentReference documentReference) {
                             Toast.makeText(RegisterActivity.this, "Uspešna registracija", Toast.LENGTH_SHORT).show();
 
+                            //FirebaseDatabase.getInstance().getReference("korisnik/" + FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(new Korisnik1(inputUsername.getText().toString(), inputEmail.getText().toString(), inputPassword.getText().toString(), ""));
                             mLoadingBar.dismiss();
                             Intent intent = new Intent(RegisterActivity.this, StartUpActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -131,25 +142,26 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
 
-            /*mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful())
                     {
-                        Toast.makeText(RegisterActivity.this, "Uspešna registracija", Toast.LENGTH_SHORT).show();
+                        /*Toast.makeText(RegisterActivity.this, "Uspešna registracija", Toast.LENGTH_SHORT).show();
 
                         mLoadingBar.dismiss();
                         Intent intent = new Intent(RegisterActivity.this, StartUpActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+                        startActivity(intent);*/
+                        FirebaseDatabase.getInstance().getReference("korisnik/" + FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(new Korisnik1(inputUsername.getText().toString(), inputEmail.getText().toString(), inputPassword.getText().toString(), ""));
                     }
-                    else
+                    /*else
                     {
                         Toast.makeText(RegisterActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                 }
-            });*/
+            });
         }
     }
 
@@ -222,4 +234,5 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 */
+
 }

@@ -1,7 +1,6 @@
 package com.example.slagalica.model;
 
-public class Korisnik {
-
+public class Korisnik1 {
     private String email;
     private String sifra;
     private String korisnickoIme;
@@ -9,7 +8,7 @@ public class Korisnik {
 
 
 
-    public Korisnik(String email, String sifra, String korisnickoIme, String profilePicture) {
+    public Korisnik1(String korisnickoIme, String email, String sifra, String profilePicture) {
 
         this.email = email;
         this.sifra = sifra;
@@ -18,11 +17,10 @@ public class Korisnik {
 
     }
 
-    public Korisnik() {
+    public Korisnik1() {
         this.email = "";
         this.sifra = "";
         this.korisnickoIme = "";
-        this.profilePicture = "";
     }
 
     public String getEmail() {
@@ -48,7 +46,6 @@ public class Korisnik {
     public void setKorisnickoIme(String korisnickoIme) {
         this.korisnickoIme = korisnickoIme;
     }
-
     public String getProfilePicture() {
         return profilePicture;
     }
@@ -58,14 +55,12 @@ public class Korisnik {
     }
 
 
-
     @Override
     public String toString() {
         return "Korisnik{" +
                 "email='" + email + '\'' +
                 ", sifra='" + sifra + '\'' +
                 ", korisnickoIme='" + korisnickoIme + '\'' +
-                ", profilePicture='" + profilePicture + '\'' +
                 '}';
     }
 }
