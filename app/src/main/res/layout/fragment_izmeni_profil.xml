@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    android:id= "@+id/promena">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
-
+        tools:layout_editor_absoluteY="1dp"
+       >
         <androidx.cardview.widget.CardView
             android:id= "@+id/cardView"
             android:layout_width="145dp"
@@ -24,30 +25,39 @@
             android:layout_marginRight="130dp"
             >
 
-            <ImageView
-                android:id="@+id/avatar"
-                android:layout_width="145dp"
-                android:layout_height="145dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/avatar" />
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/avatar" />
 
         </androidx.cardview.widget.CardView>
+        <Button
+            android:id="@+id/btnUploadImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Otpremi sliku" />
 
         <TextView
             android:id="@+id/korisnickoImeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Korisničko ime:"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:textSize="20dp"/>
 
-        <TextView
+        <EditText
             android:id="@+id/korisnickoIme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:textSize="15dp"/>
+            android:textSize="15dp"
+            />
 
         <TextView
             android:id="@+id/emailText"
@@ -58,7 +68,7 @@
             android:textSize="20dp"
             android:layout_marginTop="15dp"/>
 
-        <TextView
+        <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +84,7 @@
             android:gravity="center"
             android:layout_marginTop="15dp"/>
 
-        <TextView
+        <EditText
             android:id="@+id/lozinka"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,13 +94,7 @@
             android:textSize="15dp" />
 
 
-        <Button
-            android:id="@+id/statistikaIgara"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="60dp"
-            android:text="Statistika igara" />
+
 
         <Button
             android:id="@+id/izmeniPodatke"
@@ -111,4 +115,5 @@
 
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
