@@ -122,7 +122,6 @@ public class RegisterActivity extends AppCompatActivity {
             dataUser.put("pobedjenePartije", 0);
             dataUser.put("izgubljenePartije", 0);
 
-
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
 
