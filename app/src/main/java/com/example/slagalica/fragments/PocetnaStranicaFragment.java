@@ -21,8 +21,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.socket.emitter.Emitter;
-
 public class PocetnaStranicaFragment extends Fragment {
 
     private Map<String, Object> data = new HashMap<>();
@@ -99,12 +97,8 @@ public class PocetnaStranicaFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        MainActivity.socket.on("zapocni igru", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                // Handle the 'zapocni igru' event from the server
-                // Note: This will be executed on a background thread, so if you want to update UI components, you should use runOnUiThread or similar methods
-                if (args.length > 0 && args[0] != null) {
+        MainActivity.socket.on("zapocni igru", args -> {
+                if (args[0] != null) {
                     Log.i("SOCKET", args[0].toString());
 
                     // Perform UI operations in the main thread
@@ -116,7 +110,7 @@ public class PocetnaStranicaFragment extends Fragment {
                         }
                     });
                 }
-            }
+
         });
     }
 
