@@ -1,10 +1,14 @@
 package com.example.slagalica.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,8 +19,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.slagalica.MainActivity;
 import com.example.slagalica.R;
+import com.example.slagalica.activities.StartUpActivity;
 import com.example.slagalica.model.Korisnik;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,11 +41,11 @@ public class PocetnaStranicaFragment extends Fragment {
     private TextView brojZvezda;
 
 
-    public static PocetnaStranicaFragment newInstance(String someParam){
+    public static PocetnaStranicaFragment newInstance(String someParam) {
 
         korisnikEmail = someParam;
         Bundle args = new Bundle();
-        args.putString("key","test");
+        args.putString("key", "test");
 
         PocetnaStranicaFragment fragment = new PocetnaStranicaFragment();
         fragment.setArguments(args);
@@ -58,11 +66,11 @@ public class PocetnaStranicaFragment extends Fragment {
         textView.setText(R.string.relativelayout);
         */
 
-        TextView btnZapocniIgru = view.findViewById(R.id.zapocniIgruButton);
+        Button btnZapocniIgru = view.findViewById(R.id.zapocniIgruButton);
 
 
         btnZapocniIgru.setOnClickListener(v -> {
-            MainActivity.socket.emit("zapocni igru");
+            MainActivity.socket.emit("zapocni igru", logovanKorisnik.getEmail());
         });
 
         /*btnZapocniIgru.setOnClickListener(new View.OnClickListener() {
@@ -79,25 +87,16 @@ public class PocetnaStranicaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ProfilFragment profilFragment = ProfilFragment.newInstance(logovanKorisnik);
-                getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,profilFragment).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout, profilFragment).commit();
             }
         });
 
         brojTokena = view.findViewById(R.id.brojTokenaText);
         brojZvezda = view.findViewById(R.id.brojZvezdaText);
 
-        return view;
 
 
-
-    }
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        MainActivity.socket.on("zapocni igru", args -> {
+        /*MainActivity.socket.on("zapocni igru", args -> {
                 if (args[0] != null) {
                     Log.i("SOCKET", args[0].toString());
 
@@ -111,7 +110,78 @@ public class PocetnaStranicaFragment extends Fragment {
                     });
                 }
 
+        });*/
+
+        MainActivity.socket.on("prikazi formu", args -> {
+            if (args[0] != null) {
+                Log.i("SOCKET", args[0].toString());
+
+                JSONArray igracEmail = (JSONArray) args[0];
+
+
+
+                        // Create an AlertDialog.Builder instance
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                        // Set the dialog title and message
+                        builder.setTitle("POZIV ZA IGRU")
+                                .setMessage("Da li želite da pristupite novoj igri?");
+
+
+                        builder.setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                MainActivity.socket.emit("pokreni igru", logovanKorisnik.getEmail());
+                            }
+                        });
+
+
+                        builder.setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+
+
+
+            }
+
+
         });
+
+        MainActivity.socket.on("pokreni igru", args -> {
+            if (args[0] != null) {
+                Log.i("SOCKET", args[0].toString());
+
+                JSONArray igracEmail = (JSONArray) args[0];
+                KoZnaZnaFragment koZnaZnaFragment;
+
+                try {
+                    koZnaZnaFragment = KoZnaZnaFragment.newInstance((String) igracEmail.get(0));
+                    getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout, koZnaZnaFragment).commit();
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+            }
+        });
+
+        return view;
+
+
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -125,7 +195,6 @@ public class PocetnaStranicaFragment extends Fragment {
         brojTokena.setText(String.valueOf(logovanKorisnik.getTokeni()));
         brojZvezda.setText(String.valueOf(logovanKorisnik.getZvezde()));
     }
-
 
 
     public void getData() {
@@ -153,7 +222,7 @@ public class PocetnaStranicaFragment extends Fragment {
                 });
     }
 
-    private void findLoggedUser(String email){
+    private void findLoggedUser(String email) {
 
         for (Object value : data.values()) {
             if (value instanceof Map) {

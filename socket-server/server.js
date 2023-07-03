@@ -20,7 +20,7 @@ admin.initializeApp({
 
 // Get a reference to the Firestore instance
 var db = admin.firestore();
-
+var naCekanju = [];
 
 var List = require("collections/list");
 
@@ -51,11 +51,18 @@ io.on('connection', (socket) => {
         io.emit('message', messages.toJSON());
     })*/
 
-    socket.on('zapocni igru', () => {
+    socket.on('zapocni igru', (igrac) => {
+		console.log(igrac);
+		io.emit('prikazi formu', igrac);
+		
+	});
 
-            socket.emit('zapocni igru');
-            console.log('provera');
-    })
+    
+    socket.on('pokreni igru', (igrac) => {
+		console.log(igrac);
+		io.emit('pokreni igru', igrac);
+		
+	});
 
     socket.on('dobavi ko zna zna', () => {
 
