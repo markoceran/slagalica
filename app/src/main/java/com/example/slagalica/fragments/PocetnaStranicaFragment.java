@@ -1,9 +1,12 @@
 package com.example.slagalica.fragments;
 
+import static com.example.slagalica.MainActivity.db;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,13 +24,27 @@ import com.example.slagalica.MainActivity;
 import com.example.slagalica.R;
 import com.example.slagalica.activities.StartUpActivity;
 import com.example.slagalica.model.Korisnik;
+import com.example.slagalica.tools.SocketHandler;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+
+import io.socket.client.Socket;
 
 public class PocetnaStranicaFragment extends Fragment {
 
@@ -38,7 +55,13 @@ public class PocetnaStranicaFragment extends Fragment {
 
     private TextView brojTokena;
 
+    public static Socket socket;
+
     private TextView brojZvezda;
+
+    private Button btnZapocniIgru;
+
+    private ImageView btnProfil;
 
 
     public static PocetnaStranicaFragment newInstance(String someParam) {
@@ -56,33 +79,59 @@ public class PocetnaStranicaFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.pocetna_stranica, container, false);
 
-        Bundle bundle = getArguments();
-        /*if (bundle != null){
-            String param = bundle.getString("SOME_PARAM_KEY", "Some random name");
-            TextView textView = view.findViewById(R.id.name_content);
-            textView.setText(param);
+
+        btnZapocniIgru = view.findViewById(R.id.zapocniIgruButton);
+        brojTokena = view.findViewById(R.id.brojTokenaText);
+        brojZvezda = view.findViewById(R.id.brojZvezdaText);
+        btnProfil = view.findViewById(R.id.profil);
+
+
+        btnZapocniIgru = view.findViewById(R.id.zapocniIgruButton);
+
+        SocketHandler.setSocket();
+
+        socket = SocketHandler.getSocket();
+        try {
+            socket.connect();
+        } catch (Exception e){
+            System.out.println("ERROR " + e);
         }
-        TextView textView = view.findViewById(R.id.relativeTitle);
-        textView.setText(R.string.relativelayout);
-        */
 
-        Button btnZapocniIgru = view.findViewById(R.id.zapocniIgruButton);
+        Map<String, String> userData = new HashMap<>();
 
+        socket.on("zapocniIgru", args -> {
+            if (args.length > 0 && args[0] instanceof JSONObject) {
+                JSONObject data = (JSONObject) args[0];
 
-        btnZapocniIgru.setOnClickListener(v -> {
-            MainActivity.socket.emit("zapocni igru", logovanKorisnik.getEmail());
+                for (Iterator<String> it = data.keys(); it.hasNext(); ) {
+                    String socket = it.next();
+                    try {
+                        if (!data.get(socket).toString().equals(logovanKorisnik.getKorisnickoIme()))
+                            userData.put("protivnik", data.get(socket).toString());
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                userData.put("ja", logovanKorisnik.getKorisnickoIme());
+
+                KoZnaZnaFragment koZnaZnaFragment = KoZnaZnaFragment.newInstance(userData);
+                getParentFragmentManager().beginTransaction().replace(R.id.pocetnaStranicaLayout,koZnaZnaFragment).commit();
+            }
         });
 
-        /*btnZapocniIgru.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                KoZnaZnaFragment koZnaZnaFragment = KoZnaZnaFragment.newInstance("test");
-                getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout,koZnaZnaFragment).commit();
+        btnZapocniIgru.setOnClickListener(v -> {
+            btnZapocniIgru.setEnabled(false);
+
+            if(logovanKorisnik.getTokeni() > 0){
+
+                socket.emit("pridruziSeIgri", logovanKorisnik.getKorisnickoIme());
+
+            }else{
+                Toast.makeText(getActivity(), "Nemate dovoljno tokena!", Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
-
-        ImageView btnProfil = view.findViewById(R.id.profil);
         btnProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,90 +140,8 @@ public class PocetnaStranicaFragment extends Fragment {
             }
         });
 
-        brojTokena = view.findViewById(R.id.brojTokenaText);
-        brojZvezda = view.findViewById(R.id.brojZvezdaText);
-
-
-
-        /*MainActivity.socket.on("zapocni igru", args -> {
-                if (args[0] != null) {
-                    Log.i("SOCKET", args[0].toString());
-
-                    // Perform UI operations in the main thread
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            KoZnaZnaFragment koZnaZnaFragment = KoZnaZnaFragment.newInstance(korisnikEmail);
-                            getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout, koZnaZnaFragment).commit();
-                        }
-                    });
-                }
-
-        });*/
-
-        MainActivity.socket.on("prikazi formu", args -> {
-            if (args[0] != null) {
-                Log.i("SOCKET", args[0].toString());
-
-                JSONArray igracEmail = (JSONArray) args[0];
-
-
-
-                        // Create an AlertDialog.Builder instance
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-                        // Set the dialog title and message
-                        builder.setTitle("POZIV ZA IGRU")
-                                .setMessage("Da li želite da pristupite novoj igri?");
-
-
-                        builder.setPositiveButton("Da", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                MainActivity.socket.emit("pokreni igru", logovanKorisnik.getEmail());
-                            }
-                        });
-
-
-                        builder.setNegativeButton("Ne", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-
-
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-
-
-
-
-            }
-
-
-        });
-
-        MainActivity.socket.on("pokreni igru", args -> {
-            if (args[0] != null) {
-                Log.i("SOCKET", args[0].toString());
-
-                JSONArray igracEmail = (JSONArray) args[0];
-                KoZnaZnaFragment koZnaZnaFragment;
-
-                try {
-                    koZnaZnaFragment = KoZnaZnaFragment.newInstance((String) igracEmail.get(0));
-                    getParentFragmentManager().beginTransaction().replace(R.id.activityMainLayout, koZnaZnaFragment).commit();
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
-
-
-            }
-        });
 
         return view;
-
 
     }
 

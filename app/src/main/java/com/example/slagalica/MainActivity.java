@@ -17,7 +17,6 @@ import io.socket.client.Socket;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static Socket socket;
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String emailKorisnika;
 
@@ -37,15 +36,10 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.activityMainLayout, pocetnaStranica).commit();
 
         } else {
-            KoZnaZnaFragment koZnaZnaFragment = KoZnaZnaFragment.newInstance("");
+            KoZnaZnaFragment koZnaZnaFragment = KoZnaZnaFragment.newInstance(null);
             getSupportFragmentManager().beginTransaction().add(R.id.activityMainLayout, koZnaZnaFragment).commit();
         }
 
-        //Socket
-        SocketHandler.setSocket();
-
-        socket = SocketHandler.getSocket();
-        socket.connect();
     }
 
     @Override

@@ -35,6 +35,8 @@ public class KoZnaZnaFragment extends Fragment {
 
     public Map<String, Object> data = new HashMap<>();
 
+    public static Map<String, String> userData = new HashMap<>();
+
     private List<Button> odgovoriButtons = new ArrayList<>();
     private List<String> listaOdgovora = new ArrayList<>();
 
@@ -57,12 +59,11 @@ public class KoZnaZnaFragment extends Fragment {
     private Drawable originalColor;
 
 
-    public static KoZnaZnaFragment newInstance(String someParam){
-        Bundle args = new Bundle();
-        args.putString("key","test");
+    public static KoZnaZnaFragment newInstance(Map<String, String> someParam){
+
+        userData = someParam;
 
         KoZnaZnaFragment fragment = new KoZnaZnaFragment();
-        fragment.setArguments(args);
         return fragment;
     }
 

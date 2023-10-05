@@ -1,91 +1,49 @@
 const express = require('express');
-const socket = require('socket.io');
-const fs = require('fs');
+const http = require('http');
+const socketIO = require('socket.io');
+
+const cors = require('cors');
+
 const app = express();
-const port = 3000;
+app.use(cors()); // Enable CORS for all routes
 
-const server = app.listen(port);
-app.use(express.static('public'));
-console.log('Server is running');
-const io = socket(server);
+const server = http.createServer(app);
+const io = socketIO(server);
 
-var admin = require("firebase-admin");
+app.use(express.static('public')); 
 
-var serviceAccount = require("D:\slagalica-a1f39-firebase-adminsdk-k0h7u-29f516cd28.json");
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://slagalica-a1f39-default-rtdb.firebaseio.com"
-});
+// podaci za igru
+let igraci = [];
+let igracSocket = {};
+let bodovi = {};
+let currentTurn = 0;
+let koZnaZnaAnswers = [];
+let switcher = 0;
+let inverter = 0;
 
-// Get a reference to the Firestore instance
-var db = admin.firestore();
-var naCekanju = [];
-
-var List = require("collections/list");
-
-/*class Message {
-    constructor(_id, text, sender) {
-      this._id = _id;
-      this.text = text;
-      this.sender = sender;
-    }
-  }
-
-var messages = new List([]);
-*/
 
 io.on('connection', (socket) => {
-    console.log("New socket connection: " + socket.id);
 
-    /*socket.on('counter', () => {
-        count++;
-        console.log("counter " + count);
-        io.emit('counter', count);
-    })
+    console.log('connected with socket id: ' + socket.id);
 
-    socket.on('message', (messageText) => {
-        var randomBoolean = Math. random() >= 0.5; 
-        messages.add(new Message(messages.length, messageText, randomBoolean));
-        console.log(messages.toJSON());
-        io.emit('message', messages.toJSON());
-    })*/
-
-    socket.on('zapocni igru', (igrac) => {
-		console.log(igrac);
-		io.emit('prikazi formu', igrac);
-		
-	});
-
-    
-    socket.on('pokreni igru', (igrac) => {
-		console.log(igrac);
-		io.emit('pokreni igru', igrac);
-		
-	});
-
-    socket.on('dobavi ko zna zna', () => {
-
-                // Retrieving data from Firestore collection "korak-po-korak"
-                        db.collection("korak-po-korak")
-                            .get()
-                            .then((querySnapshot) => {
-                                if (!querySnapshot.empty) {
-                                    // Get a random document from the query snapshot
-                                    const randomIndex = Math.floor(Math.random() * querySnapshot.size);
-                                    const randomDocument = querySnapshot.docs[randomIndex];
-                                    const data = randomDocument.data();
-
-                                    // Emit the data to connected clients
-                                    io.emit('data', data);
-                                } else {
-                                    console.log('No documents found in the collection "korak-po-korak"');
-                                }
-                            })
-                            .catch((error) => {
-                                console.error('Error retrieving documents from Firestore:', error);
-                            });
-    })
+    socket.on('pridruziSeIgri', (ja) => {
+      if (igraci.length < 2) {
+        igraci.push(ja);
+        igracSocket[socket.id] = ja;
+        bodovi[ja] = 0;
+        console.log('Player joined: ' + ja + '. Total players: ' + igraci.length);
+        
+  
+        if (igraci.length === 2) {
+          io.emit('zapocniIgru', igracSocket);
+        }
+      }
+    });
+});
 
 
-})
+
+server.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
