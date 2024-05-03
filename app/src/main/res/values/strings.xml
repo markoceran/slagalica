@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Slagalica</string>
+    <string name="zapocni_igru">Započni igru</string>
+    <string name="logout">Logout</string>
+    <string name="lista_prijatelja">Lista prijatelja</string>
+    <string name="dodaj_prijatelja">Dodaj prijatelja</string>
+    <string name="ne_znam">Ne znam</string>
+    <string name="question_mark">240</string>
+    <string name="naziv_igre_moj_broj">PRONAĐI TAČNU
+        KOMBINACIJU</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

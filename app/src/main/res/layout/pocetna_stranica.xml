@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pocetnaStranicaLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/aa"
+    android:theme="@style/Theme.Slagalica">
+
+    <TextView
+        android:id="@+id/brojZvezdaText"
+        android:layout_width="63dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="152dp"
+        android:background="#805996D6"
+        app:layout_constraintBottom_toTopOf="@+id/brojTokenaText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/zvezda"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.036"
+        android:gravity="center"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/brojTokenaText"
+        android:layout_width="62dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="48dp"
+        android:background="#268E8D8D"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/zapocniIgruButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/token"
+        app:layout_constraintTop_toBottomOf="@+id/brojZvezdaText"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/token"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginBottom="39dp"
+        android:background="#268E8D8D"
+        app:layout_constraintBottom_toTopOf="@+id/zapocniIgruButton"
+        app:layout_constraintEnd_toStartOf="@+id/brojTokenaText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/tokens"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/zvezda"
+        android:layout_width="56dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="45dp"
+        android:background="#805489C1"
+        app:layout_constraintBottom_toTopOf="@+id/token"
+        app:layout_constraintEnd_toStartOf="@+id/brojZvezdaText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/zapocniIgruButton"
+        android:layout_width="175dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="299dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/zapocni_igru"
+        app:layout_constraintBottom_toTopOf="@+id/listaPrijateljaText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/token"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/prijateljiKontejner"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/prijateljiLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_marginHorizontal="5dp"
+        app:cardElevation="0dp"
+        app:contentPadding="5dp"
+        app:cardBackgroundColor="#741E1C1C"
+       >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/prijateljiKontejner2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#001E1C1C">
+
+    <LinearLayout
+        android:id="@+id/prijateljiKontejner3"
+        android:layout_width="370dp"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="4dp"
+        android:background="#75FFFFFF">
+
+        <HorizontalScrollView
+            android:id="@+id/prijateljiScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/prijateljiProfiliSvi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:rotationX="180"
+                >
+
+                <LinearLayout
+                    android:id="@+id/prijateljProfil1"
+                    android:layout_marginRight="2dp"
+                    android:layout_width="75dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/btn_bg5"
+                    android:layout_height="match_parent"
+                    android:rotationX="180">
+
+                    <LinearLayout
+                        android:id="@+id/prijateljSlika1"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:layout_marginHorizontal="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/avatar"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/prijateljIme1"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_marginHorizontal="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/prijateljTekst1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Igrac 1"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimaryDark">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/prijateljProfil2"
+                    android:layout_marginRight="2dp"
+                    android:layout_width="75dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/btn_bg5"
+                    android:layout_height="match_parent"
+                    android:rotationX="180">
+
+                    <LinearLayout
+                        android:id="@+id/prijateljSlika2"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:layout_marginHorizontal="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/avatar"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/prijateljIme2"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_marginHorizontal="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/prijateljTekst2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Igrac 2"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimaryDark">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/prijateljProfil3"
+                    android:layout_marginRight="2dp"
+                    android:layout_width="75dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/btn_bg5"
+                    android:layout_height="match_parent"
+                    android:rotationX="180">
+
+                    <LinearLayout
+                        android:id="@+id/prijateljSlika3"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:layout_marginHorizontal="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/avatar"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/prijateljIme3"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_marginHorizontal="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/prijateljTekst3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Igrac 3"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimaryDark">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/prijateljProfil4"
+                    android:layout_marginRight="2dp"
+                    android:layout_width="75dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/btn_bg5"
+                    android:layout_height="match_parent"
+                    android:rotationX="180">
+
+                    <LinearLayout
+                        android:id="@+id/prijateljSlika4"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:layout_marginHorizontal="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/avatar"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/prijateljIme4"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_marginHorizontal="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/prijateljTekst4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Igrac 4"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimaryDark">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/prijateljProfil5"
+                    android:layout_marginRight="2dp"
+                    android:layout_width="75dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/btn_bg5"
+                    android:layout_height="match_parent"
+                    android:rotationX="180">
+
+                    <LinearLayout
+                        android:id="@+id/prijateljSlika5"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:layout_marginHorizontal="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/avatar"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/prijateljIme5"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_marginHorizontal="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/prijateljTekst5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Igrac 5"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimaryDark">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/prijateljProfil6"
+                    android:layout_marginRight="2dp"
+                    android:layout_width="75dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/btn_bg5"
+                    android:layout_height="match_parent"
+                    android:rotationX="180">
+
+                    <LinearLayout
+                        android:id="@+id/prijateljSlika6"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:layout_marginHorizontal="3dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/avatar"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/prijateljIme6"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_marginHorizontal="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/prijateljTekst6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Igrac 6"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimaryDark">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/listaPrijateljaText"
+        android:layout_width="211dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/lista_prijatelja"
+        app:layout_constraintBottom_toTopOf="@+id/prijateljiKontejner"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/dodajPrijateljaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/dodaj_prijatelja"
+        app:layout_constraintBottom_toTopOf="@+id/prijateljiKontejner"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/profil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pngwing_com__5_" />
+
+    <ImageView
+        android:id="@+id/rangLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pngwing_com__6_" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
